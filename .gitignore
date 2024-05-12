@@ -1,0 +1,6 @@
+/dbs/.idea/
+/dbs/user_credentials/credentials.txt
+/dbs/dbs.iml
+/dbs/target/
+/dbs/log/
+/dbs/.gitignore
