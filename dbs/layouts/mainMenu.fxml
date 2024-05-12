@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cs.cvut.fel.dbs.visuals.MainMenuController"
+            stylesheets="@../layouts/css/mainMenu.css">
+    <VBox spacing="10" AnchorPane.topAnchor="100" AnchorPane.bottomAnchor="100" AnchorPane.leftAnchor="100" AnchorPane.rightAnchor="100">
+        <Button text="CRUD" fx:id="crudButton" onAction="#handleCrudButton" />
+        <Button text="Select" fx:id="selectButton" onAction="#handleSelectButton" />
+    </VBox>
+</AnchorPane>

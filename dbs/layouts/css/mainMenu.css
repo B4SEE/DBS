@@ -1,0 +1,7 @@
+.root {
+    -fx-background-color: #888888;
+}
+
+.VBox {
+    -fx-alignment: center;
+}
