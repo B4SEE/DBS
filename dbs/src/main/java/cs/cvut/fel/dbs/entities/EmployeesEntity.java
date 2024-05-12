@@ -12,23 +12,17 @@ public class EmployeesEntity {
     @Column(name = "id_employee")
     private int idEmployee;
     @Basic
-    @Column(name = "person_id")
-    private int personId;
-    @Basic
     @Column(name = "employee_number")
     private String employeeNumber;
-    @Basic
-    @Column(name = "is_supervised_by")
-    private Integer isSupervisedBy;
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id_person", nullable = false)
-    private PersonsEntity personsByPersonId;
+    private PersonsEntity personId;
     @ManyToOne
     @JoinColumn(name = "is_supervised_by", referencedColumnName = "id_employee")
-    private EmployeesEntity employeesByIsSupervisedBy;
-    @OneToMany(mappedBy = "employeesByIsSupervisedBy")
+    private EmployeesEntity isSupervisedBy;
+    @OneToMany(mappedBy = "isSupervisedBy")
     private Collection<EmployeesEntity> employeesByIdEmployee;
-    @OneToMany(mappedBy = "employeesByIsHandledBy")
+    @OneToMany(mappedBy = "isHandledBy")
     private Collection<SectionsEntity> sectionsByIdEmployee;
 
     public int getIdEmployee() {
@@ -39,28 +33,12 @@ public class EmployeesEntity {
         this.idEmployee = idEmployee;
     }
 
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
     public String getEmployeeNumber() {
         return employeeNumber;
     }
 
     public void setEmployeeNumber(String employeeNumber) {
         this.employeeNumber = employeeNumber;
-    }
-
-    public Integer getIsSupervisedBy() {
-        return isSupervisedBy;
-    }
-
-    public void setIsSupervisedBy(Integer isSupervisedBy) {
-        this.isSupervisedBy = isSupervisedBy;
     }
 
     @Override
@@ -76,20 +54,20 @@ public class EmployeesEntity {
         return Objects.hash(idEmployee, personId, employeeNumber, isSupervisedBy);
     }
 
-    public PersonsEntity getPersonsByPersonId() {
-        return personsByPersonId;
+    public PersonsEntity getPersonId() {
+        return personId;
     }
 
-    public void setPersonsByPersonId(PersonsEntity personsByPersonId) {
-        this.personsByPersonId = personsByPersonId;
+    public void setPersonId(PersonsEntity personsByPersonId) {
+        this.personId = personsByPersonId;
     }
 
-    public EmployeesEntity getEmployeesByIsSupervisedBy() {
-        return employeesByIsSupervisedBy;
+    public EmployeesEntity getIsSupervisedBy() {
+        return isSupervisedBy;
     }
 
-    public void setEmployeesByIsSupervisedBy(EmployeesEntity employeesByIsSupervisedBy) {
-        this.employeesByIsSupervisedBy = employeesByIsSupervisedBy;
+    public void setIsSupervisedBy(EmployeesEntity employeesByIsSupervisedBy) {
+        this.isSupervisedBy = employeesByIsSupervisedBy;
     }
 
     public Collection<EmployeesEntity> getEmployeesByIdEmployee() {

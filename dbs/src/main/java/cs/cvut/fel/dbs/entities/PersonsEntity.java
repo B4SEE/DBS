@@ -21,18 +21,15 @@ public class PersonsEntity {
     @Basic
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
-    @Basic
-    @Column(name = "address_id")
-    private int addressId;
-    @OneToMany(mappedBy = "personsByPersonId")
-    private Collection<EmployeesEntity> employeesByIdPerson;
+    @OneToMany(mappedBy = "personId")
+    private Collection<EmployeesEntity> employees;
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id_address", nullable = false)
-    private AddressesEntity addressesByAddressId;
-    @OneToMany(mappedBy = "personsByPersonId")
-    private Collection<PhonenumbersEntity> phonenumbersByIdPerson;
-    @OneToMany(mappedBy = "personsByPersonId")
-    private Collection<ScientistsEntity> scientistsByIdPerson;
+    private AddressesEntity addressId;
+    @OneToMany(mappedBy = "personId")
+    private Collection<PhonenumbersEntity> phoneNumbers;
+    @OneToMany(mappedBy = "personId")
+    private Collection<ScientistsEntity> scientists;
 
     public int getIdPerson() {
         return idPerson;
@@ -66,14 +63,6 @@ public class PersonsEntity {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,35 +76,35 @@ public class PersonsEntity {
         return Objects.hash(idPerson, lastName, firstName, dateOfBirth, addressId);
     }
 
-    public Collection<EmployeesEntity> getEmployeesByIdPerson() {
-        return employeesByIdPerson;
+    public Collection<EmployeesEntity> getEmployees() {
+        return employees;
     }
 
-    public void setEmployeesByIdPerson(Collection<EmployeesEntity> employeesByIdPerson) {
-        this.employeesByIdPerson = employeesByIdPerson;
+    public void setEmployees(Collection<EmployeesEntity> employeesByIdPerson) {
+        this.employees = employeesByIdPerson;
     }
 
-    public AddressesEntity getAddressesByAddressId() {
-        return addressesByAddressId;
+    public AddressesEntity getAddressId() {
+        return addressId;
     }
 
-    public void setAddressesByAddressId(AddressesEntity addressesByAddressId) {
-        this.addressesByAddressId = addressesByAddressId;
+    public void setAddressId(AddressesEntity addressesByAddressId) {
+        this.addressId = addressesByAddressId;
     }
 
-    public Collection<PhonenumbersEntity> getPhonenumbersByIdPerson() {
-        return phonenumbersByIdPerson;
+    public Collection<PhonenumbersEntity> getPhoneNumbers() {
+        return phoneNumbers;
     }
 
-    public void setPhonenumbersByIdPerson(Collection<PhonenumbersEntity> phonenumbersByIdPerson) {
-        this.phonenumbersByIdPerson = phonenumbersByIdPerson;
+    public void setPhoneNumbers(Collection<PhonenumbersEntity> phonenumbersByIdPerson) {
+        this.phoneNumbers = phonenumbersByIdPerson;
     }
 
-    public Collection<ScientistsEntity> getScientistsByIdPerson() {
-        return scientistsByIdPerson;
+    public Collection<ScientistsEntity> getScientists() {
+        return scientists;
     }
 
-    public void setScientistsByIdPerson(Collection<ScientistsEntity> scientistsByIdPerson) {
-        this.scientistsByIdPerson = scientistsByIdPerson;
+    public void setScientists(Collection<ScientistsEntity> scientistsByIdPerson) {
+        this.scientists = scientistsByIdPerson;
     }
 }

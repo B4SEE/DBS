@@ -13,12 +13,9 @@ public class ResearchesEntity {
     @Basic
     @Column(name = "research_name")
     private String researchName;
-    @Basic
-    @Column(name = "scientist_id")
-    private int scientistId;
     @ManyToOne
     @JoinColumn(name = "scientist_id", referencedColumnName = "id_scientist", nullable = false)
-    private ScientistsEntity scientistsByScientistId;
+    private ScientistsEntity scientistId;
 
     public int getIdResearch() {
         return idResearch;
@@ -35,15 +32,6 @@ public class ResearchesEntity {
     public void setResearchName(String researchName) {
         this.researchName = researchName;
     }
-
-    public int getScientistId() {
-        return scientistId;
-    }
-
-    public void setScientistId(int scientistId) {
-        this.scientistId = scientistId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,11 +45,11 @@ public class ResearchesEntity {
         return Objects.hash(idResearch, researchName, scientistId);
     }
 
-    public ScientistsEntity getScientistsByScientistId() {
-        return scientistsByScientistId;
+    public ScientistsEntity getScientistId() {
+        return scientistId;
     }
 
-    public void setScientistsByScientistId(ScientistsEntity scientistsByScientistId) {
-        this.scientistsByScientistId = scientistsByScientistId;
+    public void setScientistId(ScientistsEntity scientistsByScientistId) {
+        this.scientistId = scientistsByScientistId;
     }
 }

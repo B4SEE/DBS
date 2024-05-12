@@ -11,23 +11,15 @@ public class InstancesEntity {
     @Id
     @Column(name = "instance_name")
     private String instanceName;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "plant")
-    private int plant;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "section_id")
-    private int sectionId;
     @Basic
     @Column(name = "age")
     private int age;
     @ManyToOne
     @JoinColumn(name = "plant", referencedColumnName = "id_plant", nullable = false)
-    private PlantsEntity plantsByPlant;
+    private PlantsEntity plant;
     @ManyToOne
     @JoinColumn(name = "section_id", referencedColumnName = "id_section", nullable = false)
-    private SectionsEntity sectionsBySectionId;
+    private SectionsEntity sectionId;
 
     public String getInstanceName() {
         return instanceName;
@@ -36,23 +28,6 @@ public class InstancesEntity {
     public void setInstanceName(String instanceName) {
         this.instanceName = instanceName;
     }
-
-    public int getPlant() {
-        return plant;
-    }
-
-    public void setPlant(int plant) {
-        this.plant = plant;
-    }
-
-    public int getSectionId() {
-        return sectionId;
-    }
-
-    public void setSectionId(int sectionId) {
-        this.sectionId = sectionId;
-    }
-
     public int getAge() {
         return age;
     }
@@ -74,19 +49,19 @@ public class InstancesEntity {
         return Objects.hash(instanceName, plant, sectionId, age);
     }
 
-    public PlantsEntity getPlantsByPlant() {
-        return plantsByPlant;
+    public PlantsEntity getPlant() {
+        return plant;
     }
 
-    public void setPlantsByPlant(PlantsEntity plantsByPlant) {
-        this.plantsByPlant = plantsByPlant;
+    public void setPlant(PlantsEntity plantsByPlant) {
+        this.plant = plantsByPlant;
     }
 
-    public SectionsEntity getSectionsBySectionId() {
-        return sectionsBySectionId;
+    public SectionsEntity getSectionId() {
+        return sectionId;
     }
 
-    public void setSectionsBySectionId(SectionsEntity sectionsBySectionId) {
-        this.sectionsBySectionId = sectionsBySectionId;
+    public void setSectionId(SectionsEntity sectionsBySectionId) {
+        this.sectionId = sectionsBySectionId;
     }
 }

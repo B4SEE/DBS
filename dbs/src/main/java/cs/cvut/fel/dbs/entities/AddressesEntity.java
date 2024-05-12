@@ -23,7 +23,7 @@ public class AddressesEntity {
     @Basic
     @Column(name = "zip_code")
     private String zipCode;
-    @OneToMany(mappedBy = "addressesByAddressId")
+    @OneToMany(mappedBy = "addressId")
     private Collection<PersonsEntity> personsByIdAddress;
 
     public int getIdAddress() {

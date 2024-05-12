@@ -10,12 +10,9 @@ public class PhonenumbersEntity {
     @Id
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Basic
-    @Column(name = "person_id")
-    private int personId;
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id_person", nullable = false)
-    private PersonsEntity personsByPersonId;
+    private PersonsEntity personId;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -23,14 +20,6 @@ public class PhonenumbersEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
     }
 
     @Override
@@ -46,11 +35,11 @@ public class PhonenumbersEntity {
         return Objects.hash(phoneNumber, personId);
     }
 
-    public PersonsEntity getPersonsByPersonId() {
-        return personsByPersonId;
+    public PersonsEntity getPersonId() {
+        return personId;
     }
 
-    public void setPersonsByPersonId(PersonsEntity personsByPersonId) {
-        this.personsByPersonId = personsByPersonId;
+    public void setPersonId(PersonsEntity personsByPersonId) {
+        this.personId = personsByPersonId;
     }
 }

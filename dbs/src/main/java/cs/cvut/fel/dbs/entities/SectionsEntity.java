@@ -18,33 +18,24 @@ public class SectionsEntity {
     @Column(name = "geographical_coordinates")
     private String geographicalCoordinates;
     @Basic
-    @Column(name = "soil_type")
-    private int soilType;
-    @Basic
-    @Column(name = "climate_type")
-    private int climateType;
-    @Basic
     @Column(name = "temperature")
     private int temperature;
     @Basic
     @Column(name = "light")
     private int light;
-    @Basic
-    @Column(name = "is_handled_by")
-    private int isHandledBy;
-    @OneToMany(mappedBy = "sectionsBySectionId")
+    @OneToMany(mappedBy = "sectionId")
     private Collection<InstancesEntity> instancesByIdSection;
-    @OneToMany(mappedBy = "sectionsByWorksInSection")
+    @OneToMany(mappedBy = "worksInSection")
     private Collection<ScientistsEntity> scientistsByIdSection;
     @ManyToOne
     @JoinColumn(name = "soil_type", referencedColumnName = "id_soil_type", nullable = false)
-    private SoiltypesEntity soiltypesBySoilType;
+    private SoiltypesEntity soilType;
     @ManyToOne
     @JoinColumn(name = "climate_type", referencedColumnName = "id_climate_type", nullable = false)
-    private ClimatetypesEntity climatetypesByClimateType;
+    private ClimatetypesEntity climateType;
     @ManyToOne
     @JoinColumn(name = "is_handled_by", referencedColumnName = "id_employee", nullable = false)
-    private EmployeesEntity employeesByIsHandledBy;
+    private EmployeesEntity isHandledBy;
 
     public int getIdSection() {
         return idSection;
@@ -70,22 +61,6 @@ public class SectionsEntity {
         this.geographicalCoordinates = geographicalCoordinates;
     }
 
-    public int getSoilType() {
-        return soilType;
-    }
-
-    public void setSoilType(int soilType) {
-        this.soilType = soilType;
-    }
-
-    public int getClimateType() {
-        return climateType;
-    }
-
-    public void setClimateType(int climateType) {
-        this.climateType = climateType;
-    }
-
     public int getTemperature() {
         return temperature;
     }
@@ -100,14 +75,6 @@ public class SectionsEntity {
 
     public void setLight(int light) {
         this.light = light;
-    }
-
-    public int getIsHandledBy() {
-        return isHandledBy;
-    }
-
-    public void setIsHandledBy(int isHandledBy) {
-        this.isHandledBy = isHandledBy;
     }
 
     @Override
@@ -139,27 +106,27 @@ public class SectionsEntity {
         this.scientistsByIdSection = scientistsByIdSection;
     }
 
-    public SoiltypesEntity getSoiltypesBySoilType() {
-        return soiltypesBySoilType;
+    public SoiltypesEntity getSoilType() {
+        return soilType;
     }
 
-    public void setSoiltypesBySoilType(SoiltypesEntity soiltypesBySoilType) {
-        this.soiltypesBySoilType = soiltypesBySoilType;
+    public void setSoilType(SoiltypesEntity soiltypesBySoilType) {
+        this.soilType = soiltypesBySoilType;
     }
 
-    public ClimatetypesEntity getClimatetypesByClimateType() {
-        return climatetypesByClimateType;
+    public ClimatetypesEntity getClimateType() {
+        return climateType;
     }
 
-    public void setClimatetypesByClimateType(ClimatetypesEntity climatetypesByClimateType) {
-        this.climatetypesByClimateType = climatetypesByClimateType;
+    public void setClimateType(ClimatetypesEntity climatetypesByClimateType) {
+        this.climateType = climatetypesByClimateType;
     }
 
-    public EmployeesEntity getEmployeesByIsHandledBy() {
-        return employeesByIsHandledBy;
+    public EmployeesEntity getIsHandledBy() {
+        return isHandledBy;
     }
 
-    public void setEmployeesByIsHandledBy(EmployeesEntity employeesByIsHandledBy) {
-        this.employeesByIsHandledBy = employeesByIsHandledBy;
+    public void setIsHandledBy(EmployeesEntity employeesByIsHandledBy) {
+        this.isHandledBy = employeesByIsHandledBy;
     }
 }

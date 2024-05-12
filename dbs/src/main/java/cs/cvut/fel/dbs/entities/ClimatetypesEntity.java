@@ -17,11 +17,6 @@ public class ClimatetypesEntity {
     @Basic
     @Column(name = "climate_description")
     private String climateDescription;
-    @OneToMany(mappedBy = "climatetypesByIdClimateType")
-    private Collection<PlantspreferredclimatetypesEntity> plantspreferredclimatetypesByIdClimateType;
-    @OneToMany(mappedBy = "climatetypesByClimateType")
-    private Collection<SectionsEntity> sectionsByIdClimateType;
-
     public int getIdClimateType() {
         return idClimateType;
     }
@@ -57,21 +52,5 @@ public class ClimatetypesEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idClimateType, climateName, climateDescription);
-    }
-
-    public Collection<PlantspreferredclimatetypesEntity> getPlantspreferredclimatetypesByIdClimateType() {
-        return plantspreferredclimatetypesByIdClimateType;
-    }
-
-    public void setPlantspreferredclimatetypesByIdClimateType(Collection<PlantspreferredclimatetypesEntity> plantspreferredclimatetypesByIdClimateType) {
-        this.plantspreferredclimatetypesByIdClimateType = plantspreferredclimatetypesByIdClimateType;
-    }
-
-    public Collection<SectionsEntity> getSectionsByIdClimateType() {
-        return sectionsByIdClimateType;
-    }
-
-    public void setSectionsByIdClimateType(Collection<SectionsEntity> sectionsByIdClimateType) {
-        this.sectionsByIdClimateType = sectionsByIdClimateType;
     }
 }

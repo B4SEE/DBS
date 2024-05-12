@@ -1,26 +1,19 @@
 package cs.cvut.fel.dbs.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "plantspreferredclimatetypes", schema = "public", catalog = "virycele")
-@IdClass(PlantspreferredclimatetypesEntityPK.class)
-public class PlantspreferredclimatetypesEntity {
+@javax.persistence.Table(name = "plantspreferredclimatetypes", schema = "public", catalog = "virycele")
+public class PlantspreferredclimatetypesEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_plant")
+    @javax.persistence.Column(name = "id_plant")
     private int idPlant;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id_climate_type")
-    private int idClimateType;
-    @ManyToOne
-    @JoinColumn(name = "id_plant", referencedColumnName = "id_plant", nullable = false)
-    private PlantsEntity plantsByIdPlant;
-    @ManyToOne
-    @JoinColumn(name = "id_climate_type", referencedColumnName = "id_climate_type", nullable = false)
-    private ClimatetypesEntity climatetypesByIdClimateType;
 
     public int getIdPlant() {
         return idPlant;
@@ -29,6 +22,11 @@ public class PlantspreferredclimatetypesEntity {
     public void setIdPlant(int idPlant) {
         this.idPlant = idPlant;
     }
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @javax.persistence.Column(name = "id_climate_type")
+    private int idClimateType;
 
     public int getIdClimateType() {
         return idClimateType;
@@ -49,21 +47,5 @@ public class PlantspreferredclimatetypesEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idPlant, idClimateType);
-    }
-
-    public PlantsEntity getPlantsByIdPlant() {
-        return plantsByIdPlant;
-    }
-
-    public void setPlantsByIdPlant(PlantsEntity plantsByIdPlant) {
-        this.plantsByIdPlant = plantsByIdPlant;
-    }
-
-    public ClimatetypesEntity getClimatetypesByIdClimateType() {
-        return climatetypesByIdClimateType;
-    }
-
-    public void setClimatetypesByIdClimateType(ClimatetypesEntity climatetypesByIdClimateType) {
-        this.climatetypesByIdClimateType = climatetypesByIdClimateType;
     }
 }

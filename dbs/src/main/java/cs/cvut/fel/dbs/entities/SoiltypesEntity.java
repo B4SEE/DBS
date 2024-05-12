@@ -17,10 +17,6 @@ public class SoiltypesEntity {
     @Basic
     @Column(name = "soil_description")
     private String soilDescription;
-    @OneToMany(mappedBy = "soiltypesByIdSoilType")
-    private Collection<PlantspreferredsoiltypesEntity> plantspreferredsoiltypesByIdSoilType;
-    @OneToMany(mappedBy = "soiltypesBySoilType")
-    private Collection<SectionsEntity> sectionsByIdSoilType;
 
     public int getIdSoilType() {
         return idSoilType;
@@ -57,21 +53,5 @@ public class SoiltypesEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idSoilType, soilName, soilDescription);
-    }
-
-    public Collection<PlantspreferredsoiltypesEntity> getPlantspreferredsoiltypesByIdSoilType() {
-        return plantspreferredsoiltypesByIdSoilType;
-    }
-
-    public void setPlantspreferredsoiltypesByIdSoilType(Collection<PlantspreferredsoiltypesEntity> plantspreferredsoiltypesByIdSoilType) {
-        this.plantspreferredsoiltypesByIdSoilType = plantspreferredsoiltypesByIdSoilType;
-    }
-
-    public Collection<SectionsEntity> getSectionsByIdSoilType() {
-        return sectionsByIdSoilType;
-    }
-
-    public void setSectionsByIdSoilType(Collection<SectionsEntity> sectionsByIdSoilType) {
-        this.sectionsByIdSoilType = sectionsByIdSoilType;
     }
 }

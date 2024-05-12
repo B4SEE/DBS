@@ -12,25 +12,19 @@ public class ScientistsEntity {
     @Column(name = "id_scientist")
     private int idScientist;
     @Basic
-    @Column(name = "person_id")
-    private int personId;
-    @Basic
     @Column(name = "represent_institute")
     private String representInstitute;
     @Basic
     @Column(name = "title")
     private String title;
-    @Basic
-    @Column(name = "works_in_section")
-    private Integer worksInSection;
-    @OneToMany(mappedBy = "scientistsByScientistId")
+    @OneToMany(mappedBy = "scientistId")
     private Collection<ResearchesEntity> researchesByIdScientist;
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id_person", nullable = false)
-    private PersonsEntity personsByPersonId;
+    private PersonsEntity personId;
     @ManyToOne
     @JoinColumn(name = "works_in_section", referencedColumnName = "id_section")
-    private SectionsEntity sectionsByWorksInSection;
+    private SectionsEntity worksInSection;
 
     public int getIdScientist() {
         return idScientist;
@@ -38,14 +32,6 @@ public class ScientistsEntity {
 
     public void setIdScientist(int idScientist) {
         this.idScientist = idScientist;
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
     }
 
     public String getRepresentInstitute() {
@@ -62,14 +48,6 @@ public class ScientistsEntity {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Integer getWorksInSection() {
-        return worksInSection;
-    }
-
-    public void setWorksInSection(Integer worksInSection) {
-        this.worksInSection = worksInSection;
     }
 
     @Override
@@ -93,19 +71,19 @@ public class ScientistsEntity {
         this.researchesByIdScientist = researchesByIdScientist;
     }
 
-    public PersonsEntity getPersonsByPersonId() {
-        return personsByPersonId;
+    public PersonsEntity getPersonId() {
+        return personId;
     }
 
-    public void setPersonsByPersonId(PersonsEntity personsByPersonId) {
-        this.personsByPersonId = personsByPersonId;
+    public void setPersonId(PersonsEntity personsByPersonId) {
+        this.personId = personsByPersonId;
     }
 
-    public SectionsEntity getSectionsByWorksInSection() {
-        return sectionsByWorksInSection;
+    public SectionsEntity getWorksInSection() {
+        return worksInSection;
     }
 
-    public void setSectionsByWorksInSection(SectionsEntity sectionsByWorksInSection) {
-        this.sectionsByWorksInSection = sectionsByWorksInSection;
+    public void setWorksInSection(SectionsEntity sectionsByWorksInSection) {
+        this.worksInSection = sectionsByWorksInSection;
     }
 }

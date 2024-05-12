@@ -1,25 +1,19 @@
 package cs.cvut.fel.dbs.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "plantspreferredsoiltypes", schema = "public", catalog = "virycele")
-@IdClass(PlantspreferredsoiltypesEntityPK.class)
-public class PlantspreferredsoiltypesEntity {
+@javax.persistence.Table(name = "plantspreferredsoiltypes", schema = "public", catalog = "virycele")
+public class PlantspreferredsoiltypesEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_plant")
+    @javax.persistence.Column(name = "id_plant")
     private int idPlant;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id_soil_type")
-    private int idSoilType;
-    @ManyToMany
-    private PlantsEntity plantsByIdPlant;
-    @ManyToOne
-    @JoinColumn(name = "id_soil_type", referencedColumnName = "id_soil_type", nullable = false)
-    private SoiltypesEntity soiltypesByIdSoilType;
 
     public int getIdPlant() {
         return idPlant;
@@ -28,6 +22,11 @@ public class PlantspreferredsoiltypesEntity {
     public void setIdPlant(int idPlant) {
         this.idPlant = idPlant;
     }
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @javax.persistence.Column(name = "id_soil_type")
+    private int idSoilType;
 
     public int getIdSoilType() {
         return idSoilType;
@@ -48,21 +47,5 @@ public class PlantspreferredsoiltypesEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idPlant, idSoilType);
-    }
-
-    public PlantsEntity getPlantsByIdPlant() {
-        return plantsByIdPlant;
-    }
-
-    public void setPlantsByIdPlant(PlantsEntity plantsByIdPlant) {
-        this.plantsByIdPlant = plantsByIdPlant;
-    }
-
-    public SoiltypesEntity getSoiltypesByIdSoilType() {
-        return soiltypesByIdSoilType;
-    }
-
-    public void setSoiltypesByIdSoilType(SoiltypesEntity soiltypesByIdSoilType) {
-        this.soiltypesByIdSoilType = soiltypesByIdSoilType;
     }
 }

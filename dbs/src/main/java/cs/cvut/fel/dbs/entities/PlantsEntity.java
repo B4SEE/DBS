@@ -1,51 +1,15 @@
 package cs.cvut.fel.dbs.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "plants", schema = "public", catalog = "virycele")
+@javax.persistence.Table(name = "plants", schema = "public", catalog = "virycele")
 public class PlantsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_plant")
+    @javax.persistence.Column(name = "id_plant")
     private int idPlant;
-    @Basic
-    @Column(name = "plant_name")
-    private String plantName;
-    @Basic
-    @Column(name = "plant_type")
-    private String plantType;
-    @Basic
-    @Column(name = "min_temperature")
-    private int minTemperature;
-    @Basic
-    @Column(name = "max_temperature")
-    private int maxTemperature;
-    @Basic
-    @Column(name = "min_light")
-    private int minLight;
-    @Basic
-    @Column(name = "max_light")
-    private int maxLight;
-    @OneToMany(mappedBy = "plantsByPlant")
-    private Collection<InstancesEntity> instancesByIdPlant;
-    @ManyToMany
-    @JoinTable(
-            name = "plantspreferredclimatetypes",
-            joinColumns = @JoinColumn(name = "id_plant"),
-            inverseJoinColumns = @JoinColumn(name = "id_climate_type")
-    )
-    private Set<PlantspreferredclimatetypesEntity> plantspreferredclimatetypesByIdPlant;
-    @ManyToMany
-    @JoinTable(
-            name = "plantspreferredsoiltypes",
-            joinColumns = @JoinColumn(name = "id_plant"),
-            inverseJoinColumns = @JoinColumn(name = "id_soil_type")
-    )
-    private Set<PlantspreferredsoiltypesEntity> plantspreferredsoiltypesByIdPlant;
 
     public int getIdPlant() {
         return idPlant;
@@ -55,6 +19,10 @@ public class PlantsEntity {
         this.idPlant = idPlant;
     }
 
+    @Basic
+    @Column(name = "plant_name")
+    private String plantName;
+
     public String getPlantName() {
         return plantName;
     }
@@ -62,6 +30,10 @@ public class PlantsEntity {
     public void setPlantName(String plantName) {
         this.plantName = plantName;
     }
+
+    @Basic
+    @Column(name = "plant_type")
+    private String plantType;
 
     public String getPlantType() {
         return plantType;
@@ -71,6 +43,10 @@ public class PlantsEntity {
         this.plantType = plantType;
     }
 
+    @Basic
+    @Column(name = "min_temperature")
+    private int minTemperature;
+
     public int getMinTemperature() {
         return minTemperature;
     }
@@ -78,6 +54,10 @@ public class PlantsEntity {
     public void setMinTemperature(int minTemperature) {
         this.minTemperature = minTemperature;
     }
+
+    @Basic
+    @Column(name = "max_temperature")
+    private int maxTemperature;
 
     public int getMaxTemperature() {
         return maxTemperature;
@@ -87,6 +67,10 @@ public class PlantsEntity {
         this.maxTemperature = maxTemperature;
     }
 
+    @Basic
+    @Column(name = "min_light")
+    private int minLight;
+
     public int getMinLight() {
         return minLight;
     }
@@ -94,6 +78,10 @@ public class PlantsEntity {
     public void setMinLight(int minLight) {
         this.minLight = minLight;
     }
+
+    @Basic
+    @Column(name = "max_light")
+    private int maxLight;
 
     public int getMaxLight() {
         return maxLight;
@@ -114,29 +102,5 @@ public class PlantsEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idPlant, plantName, plantType, minTemperature, maxTemperature, minLight, maxLight);
-    }
-
-    public Collection<InstancesEntity> getInstancesByIdPlant() {
-        return instancesByIdPlant;
-    }
-
-    public void setInstancesByIdPlant(Collection<InstancesEntity> instancesByIdPlant) {
-        this.instancesByIdPlant = instancesByIdPlant;
-    }
-
-    public Collection<PlantspreferredclimatetypesEntity> getPlantspreferredclimatetypesByIdPlant() {
-        return plantspreferredclimatetypesByIdPlant;
-    }
-
-    public void setPlantspreferredclimatetypesByIdPlant(Collection<PlantspreferredclimatetypesEntity> plantspreferredclimatetypesByIdPlant) {
-        this.plantspreferredclimatetypesByIdPlant = (Set<PlantspreferredclimatetypesEntity>) plantspreferredclimatetypesByIdPlant;
-    }
-
-    public Collection<PlantspreferredsoiltypesEntity> getPlantspreferredsoiltypesByIdPlant() {
-        return plantspreferredsoiltypesByIdPlant;
-    }
-
-    public void setPlantspreferredsoiltypesByIdPlant(Collection<PlantspreferredsoiltypesEntity> plantspreferredsoiltypesByIdPlant) {
-        this.plantspreferredsoiltypesByIdPlant = (Set<PlantspreferredsoiltypesEntity>) plantspreferredsoiltypesByIdPlant;
     }
 }
