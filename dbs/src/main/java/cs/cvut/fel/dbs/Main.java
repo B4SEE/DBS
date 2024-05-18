@@ -1,7 +1,7 @@
 package cs.cvut.fel.dbs;
 
-import cs.cvut.fel.dbs.app_logic.DatabaseConnection;
-import cs.cvut.fel.dbs.visuals.GUI;
+import cs.cvut.fel.dbs.db.DatabaseConnection;
+import cs.cvut.fel.dbs.main.GUI;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.apache.log4j.LogManager;

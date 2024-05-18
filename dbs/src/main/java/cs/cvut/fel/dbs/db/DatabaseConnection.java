@@ -1,4 +1,4 @@
-package cs.cvut.fel.dbs.app_logic;
+package cs.cvut.fel.dbs.db;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -61,7 +61,11 @@ public class DatabaseConnection {
         entityManagerFactory = Persistence.createEntityManagerFactory("myPU", configOverrides);
         logger.info("Connected to database.");
     }
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            logger.error("Connection is not initialized.");
+            System.exit(1);
+        }
         return connection;
     }
 

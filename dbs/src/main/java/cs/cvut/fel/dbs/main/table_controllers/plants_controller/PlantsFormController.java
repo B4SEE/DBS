@@ -1,17 +1,18 @@
-package cs.cvut.fel.dbs.visuals.table_controllers.plants_controller;
+package cs.cvut.fel.dbs.main.table_controllers.plants_controller;
 
+import cs.cvut.fel.dbs.entities.PlantsEntity;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class FormController {
-    private TextField plantNameField = new TextField();
-    private TextField plantTypeField = new TextField();
-    private TextField minTemperatureField = new TextField();
-    private TextField maxTemperatureField = new TextField();
-    private TextField minLightField = new TextField();
-    private TextField maxLightField = new TextField();
-    private Label preferredSoilTypesLabel = new Label("Preferred Soil Types: ");
-    private Label preferredClimateTypesLabel = new Label("Preferred Climate Types: ");
+public class PlantsFormController {
+    private final TextField plantNameField = new TextField();
+    private final TextField plantTypeField = new TextField();
+    private final TextField minTemperatureField = new TextField();
+    private final TextField maxTemperatureField = new TextField();
+    private final TextField minLightField = new TextField();
+    private final TextField maxLightField = new TextField();
+    private final Label preferredSoilTypesLabel = new Label("Preferred Soil Types: ");
+    private final Label preferredClimateTypesLabel = new Label("Preferred Climate Types: ");
 
     public String getPlantName() {
         return plantNameField.getText();
@@ -80,5 +81,29 @@ public class FormController {
 
     public Label getPreferredClimateTypesLabel() {
         return preferredClimateTypesLabel;
+    }
+    public void clearForm() {
+        getPlantNameField().clear();
+        getPlantTypeField().clear();
+        getMinTemperatureField().clear();
+        getMaxTemperatureField().clear();
+        getMinLightField().clear();
+        getMaxLightField().clear();
+    }
+    public void resetFields() {
+        getPlantNameField().setEditable(true);
+        getPlantTypeField().setEditable(true);
+        getMinTemperatureField().setEditable(true);
+        getMaxTemperatureField().setEditable(true);
+        getMinLightField().setEditable(true);
+        getMaxLightField().setEditable(true);
+    }
+    public void fillFormFields(PlantsEntity plant) {
+        setPlantName(plant.getPlantName());
+        setPlantType(plant.getPlantType());
+        setMinTemperature(plant.getMinTemperature());
+        setMaxTemperature(plant.getMaxTemperature());
+        setMinLight(plant.getMinLight());
+        setMaxLight(plant.getMaxLight());
     }
 }

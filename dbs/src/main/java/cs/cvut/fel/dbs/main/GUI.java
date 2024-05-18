@@ -1,7 +1,6 @@
-package cs.cvut.fel.dbs.visuals;
+package cs.cvut.fel.dbs.main;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.apache.log4j.LogManager;

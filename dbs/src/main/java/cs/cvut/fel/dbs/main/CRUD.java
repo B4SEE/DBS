@@ -1,6 +1,5 @@
-package cs.cvut.fel.dbs.visuals;
+package cs.cvut.fel.dbs.main;
 
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,8 +15,10 @@ public class CRUD {
     public static GridPane recordsGrid;
     public static Label errorMessage;
     public static Button addButton;
+    public static Button cancelButton;
     public static GridPane recordsFormGrid;
     public static Label noRecordsSelectedLabel;
+    public static Label recordsGridTitle;
 
     public static void showCRUDScene() {
         // Load fxml file
@@ -26,17 +27,15 @@ public class CRUD {
         VBox grid = (VBox) GUI.loadFXML("layouts/crud.fxml");
         GUI.getStage().setScene(new Scene(grid, 800, 600));
         recordsGrid = (GridPane) grid.lookup("#recordsGrid");
+        recordsGridTitle = (Label) grid.lookup("#recordsGridTitle");
         recordsFormGrid = (GridPane) grid.lookup("#recordsFormGrid");
         errorMessage = (Label) grid.lookup("#errorMessage");
         noRecordsSelectedLabel = (Label) grid.lookup("#noRecordsSelectedLabel");
         errorMessage.setVisible(false);
+        errorMessage.setStyle("-fx-text-fill: red");
         addButton = (Button) grid.lookup("#addButton");
-    }
-    public void exit(ActionEvent actionEvent) {
-        GUI.getStage().close();
-    }
-    public void mainMenu(ActionEvent actionEvent) {
-        GUI.showMainMenu();
+        cancelButton = (Button) grid.lookup("#cancelButton");
+        cancelButton.setVisible(false);
     }
     public static void addErrorMessageAndAddButton() {
         int numRows = recordsGrid.getChildren().stream()
@@ -48,5 +47,6 @@ public class CRUD {
         logger.info("Number of rows: " + numRows);
         GridPane.setRowIndex(errorMessage, numRows + 1);
         GridPane.setRowIndex(addButton, numRows + 2);
+        GridPane.setRowIndex(cancelButton, numRows + 3);
     }
 }

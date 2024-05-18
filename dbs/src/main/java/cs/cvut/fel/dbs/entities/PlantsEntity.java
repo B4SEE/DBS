@@ -1,6 +1,6 @@
 package cs.cvut.fel.dbs.entities;
 
-import cs.cvut.fel.dbs.app_logic.DatabaseConnection;
+import cs.cvut.fel.dbs.db.DatabaseConnection;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

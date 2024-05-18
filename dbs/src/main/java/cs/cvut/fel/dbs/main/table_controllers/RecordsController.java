@@ -1,6 +1,6 @@
-package cs.cvut.fel.dbs.visuals.table_controllers;
+package cs.cvut.fel.dbs.main.table_controllers;
 
-import cs.cvut.fel.dbs.visuals.GUI;
+import cs.cvut.fel.dbs.main.GUI;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
