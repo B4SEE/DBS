@@ -146,15 +146,17 @@ public class InstancesDAO {
         CRUD.errorMessage.setVisible(false);
     }
     protected static List<PlantsEntity> getListOfAvailablePlantTypes(InstancesEntity instance) {
-        StringBuilder query = new StringBuilder("SELECT * FROM plants WHERE id_plant != ");
-        if (selectedPlant != null) {
-            query.append(selectedPlant.getIdPlant());
-            logger.info("Query: " + query);
-        } else {
-            query.append(instance.getPlant().getIdPlant());
-            logger.info("Query: " + query);
+        StringBuilder query = new StringBuilder("SELECT * FROM plants");
+        if (instance != null) {
+            query.append(" WHERE id_plant != ");
+            if (selectedPlant != null) {
+                query.append(selectedPlant.getIdPlant());
+                logger.info("Query: " + query);
+            } else {
+                query.append(instance.getPlant().getIdPlant());
+                logger.info("Query: " + query);
+            }
         }
-
         List<PlantsEntity> availablePlantTypes = new ArrayList<>();
         Statement statement = null;
         ResultSet result = null;
@@ -187,13 +189,15 @@ public class InstancesDAO {
         return availablePlantTypes;
     }
     protected static List<SectionsEntity> getListOfAvailableSections(InstancesEntity instance) {
-        StringBuilder query = new StringBuilder("SELECT * FROM sections WHERE id_section != ");
-        if (selectedSection != null) {
-            query.append(selectedSection.getIdSection());
-        } else {
-            query.append(instance.getSection().getIdSection());
+        StringBuilder query = new StringBuilder("SELECT * FROM sections");
+        if (instance != null) {
+            query.append(" WHERE id_section != ");
+            if (selectedSection != null) {
+                query.append(selectedSection.getIdSection());
+            } else {
+                query.append(instance.getSection().getIdSection());
+            }
         }
-
         List<SectionsEntity> availableSections = new ArrayList<>();
         Statement statement = null;
         ResultSet result = null;

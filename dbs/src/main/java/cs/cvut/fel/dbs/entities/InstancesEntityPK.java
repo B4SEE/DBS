@@ -8,19 +8,19 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class InstancesEntityPK implements Serializable {
-    @Column(name = "instance_name")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String instanceName;
-    @Column(name = "plant")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int plant;
-    @Column(name = "section_id")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int section;
+    private int plantId;
+    private int sectionId;
 
+    public InstancesEntityPK() {
+    }
+    public InstancesEntityPK(String instanceName, int idPlant, int idSection) {
+        this.instanceName = instanceName;
+        this.plantId = idPlant;
+        this.sectionId = idSection;
+    }
+
+    // Getters and setters
     public String getInstanceName() {
         return instanceName;
     }
@@ -29,20 +29,20 @@ public class InstancesEntityPK implements Serializable {
         this.instanceName = instanceName;
     }
 
-    public int getPlant() {
-        return plant;
+    public int getPlantId() {
+        return plantId;
     }
 
-    public void setPlant(int plant) {
-        this.plant = plant;
+    public void setPlantId(int plantId) {
+        this.plantId = plantId;
     }
 
-    public int getSection() {
-        return section;
+    public int getSectionId() {
+        return sectionId;
     }
 
-    public void setSection(int section) {
-        this.section = section;
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
     }
 
     @Override
@@ -50,11 +50,13 @@ public class InstancesEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InstancesEntityPK that = (InstancesEntityPK) o;
-        return plant == that.plant && section == that.section && Objects.equals(instanceName, that.instanceName);
+        return plantId == that.plantId &&
+                sectionId == that.sectionId &&
+                Objects.equals(instanceName, that.instanceName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(instanceName, plant, section);
+        return Objects.hash(instanceName, plantId, sectionId);
     }
 }

@@ -2,6 +2,7 @@ package cs.cvut.fel.dbs.main.tables.instances;
 
 import cs.cvut.fel.dbs.db.DatabaseConnection;
 import cs.cvut.fel.dbs.entities.InstancesEntity;
+import cs.cvut.fel.dbs.entities.InstancesEntityPK;
 import cs.cvut.fel.dbs.entities.PlantsEntity;
 import cs.cvut.fel.dbs.entities.SectionsEntity;
 import org.apache.log4j.LogManager;
@@ -25,7 +26,7 @@ public class InstancesController {
         try {
             Integer.parseInt(form.getInstanceAgeField().getText());
         } catch (NumberFormatException e) {
-            InstancesView.showErrorMessage("Min light must be a number.");
+            InstancesView.showErrorMessage("Age must be a number.");
             return false;
         }
         if (form.getInstanceAge() < 0) {
@@ -64,13 +65,26 @@ public class InstancesController {
             return;
         }
         try {
+            EntityManager entityManager = DatabaseConnection.getEntityManager();
+
             InstancesEntity instance = new InstancesEntity();
             InstancesDAO.updateInstance(instance);
 
-            instance.setPlant(InstancesDAO.selectedPlant);
-            instance.setSection(InstancesDAO.selectedSection);
+            if (InstancesDAO.selectedSection != null) {
+                instance.setSection(InstancesDAO.selectedSection);
+            }
+            if (InstancesDAO.selectedPlant != null) {
+                instance.setPlant(InstancesDAO.selectedPlant);
+            }
 
-            EntityManager entityManager = DatabaseConnection.getEntityManager();
+            // try to find existing instance (name + plant + section should be unique)
+            InstancesEntity instanceInDb = entityManager.find(InstancesEntity.class, new InstancesEntityPK(instance.getInstanceName(), instance.getPlant().getIdPlant(), instance.getSection().getIdSection()));
+            if (instanceInDb != null) {
+                InstancesView.showErrorMessage("Same instance already exists.");
+                return;
+            }
+
+            entityManager = DatabaseConnection.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.persist(instance);
             entityManager.getTransaction().commit();
@@ -91,14 +105,31 @@ public class InstancesController {
             return;
         }
         try {
+            EntityManager entityManager = DatabaseConnection.getEntityManager();
+
+            InstancesEntity oldInstance = entityManager.find(InstancesEntity.class, new InstancesEntityPK(instance.getInstanceName(), instance.getPlant().getIdPlant(), instance.getSection().getIdSection()));
+
             InstancesDAO.updateInstance(instance);
 
-            instance.setPlant(InstancesDAO.selectedPlant);
-            instance.setSection(InstancesDAO.selectedSection);
+            if (InstancesDAO.selectedSection != null) {
+                instance.setSection(InstancesDAO.selectedSection);
+            }
+            if (InstancesDAO.selectedPlant != null) {
+                instance.setPlant(InstancesDAO.selectedPlant);
+            }
 
-            EntityManager entityManager = DatabaseConnection.getEntityManager();
+            // try to find existing instance (name + plant + section should be unique)
+            InstancesEntity instanceInDb = entityManager.find(InstancesEntity.class, new InstancesEntityPK(instance.getInstanceName(), instance.getPlant().getIdPlant(), instance.getSection().getIdSection()));
+            if (instanceInDb != null) {
+                InstancesView.showErrorMessage("Same instance already exists.");
+                return;
+            }
+
             entityManager.getTransaction().begin();
             entityManager.merge(instance);
+            if (oldInstance != null) {
+                entityManager.remove(oldInstance);
+            }
             entityManager.getTransaction().commit();
 
             InstancesView.showInstancesRecordsList();

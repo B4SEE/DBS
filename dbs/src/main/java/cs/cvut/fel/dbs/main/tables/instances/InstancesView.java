@@ -188,7 +188,7 @@ public class InstancesView {
 
         int countPlantTypes = 0;
         for (PlantsEntity plant : availablePlantTypes) {
-            if (plant == null) {
+            if (plant == null || plant.getPlantName() == null || plant.getPlantName().isEmpty()) {
                 continue;
             }
 
@@ -242,7 +242,7 @@ public class InstancesView {
 
         int countSections = 0;
         for (SectionsEntity section : availableSections) {
-            if (section == null) {
+            if (section == null || section.getSectionName() == null || section.getSectionName().isEmpty()) {
                 continue;
             }
             RecordsController recordsController = new RecordsController();
