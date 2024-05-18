@@ -6,7 +6,7 @@
 
 <GridPane fx:id="Grid" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="cs.cvut.fel.dbs.main.table_controllers.RecordsController"
+          fx:controller="cs.cvut.fel.dbs.main.tables.RecordsController"
           stylesheets="@../layouts/css/mainMenu.css">
     <Label fx:id="recordInfo" prefHeight="17.0" prefWidth="479.0" text="record data" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
     <Button fx:id="infoButton" mnemonicParsing="false" text="info" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />

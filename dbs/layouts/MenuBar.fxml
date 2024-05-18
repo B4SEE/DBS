@@ -17,6 +17,7 @@
             <Menu mnemonicParsing="false" text="CRUD">
                 <items>
                     <MenuItem mnemonicParsing="false" text="Plants" onAction="#handleCrudPlantsButton" />
+                    <MenuItem mnemonicParsing="false" text="Instances" onAction="#handleCrudInstancesButton" />
                 </items>
             </Menu>
         </menus>
