@@ -16,7 +16,7 @@ public class EmployeesEntity {
     private String employeeNumber;
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id_person", nullable = false)
-    private PersonsEntity personId;
+    private PersonsEntity person;
     @ManyToOne
     @JoinColumn(name = "is_supervised_by", referencedColumnName = "id_employee")
     private EmployeesEntity isSupervisedBy;
@@ -46,20 +46,20 @@ public class EmployeesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmployeesEntity that = (EmployeesEntity) o;
-        return idEmployee == that.idEmployee && personId == that.personId && Objects.equals(employeeNumber, that.employeeNumber) && Objects.equals(isSupervisedBy, that.isSupervisedBy);
+        return idEmployee == that.idEmployee && person == that.person && Objects.equals(employeeNumber, that.employeeNumber) && Objects.equals(isSupervisedBy, that.isSupervisedBy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEmployee, personId, employeeNumber, isSupervisedBy);
+        return Objects.hash(idEmployee, person, employeeNumber, isSupervisedBy);
     }
 
-    public PersonsEntity getPersonId() {
-        return personId;
+    public PersonsEntity getPerson() {
+        return person;
     }
 
-    public void setPersonId(PersonsEntity personsByPersonId) {
-        this.personId = personsByPersonId;
+    public void setPerson(PersonsEntity personsByPersonId) {
+        this.person = personsByPersonId;
     }
 
     public EmployeesEntity getIsSupervisedBy() {

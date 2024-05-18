@@ -1,6 +1,8 @@
 package cs.cvut.fel.dbs.main;
 
-import cs.cvut.fel.dbs.main.table_controllers.plants_controller.PlantsView;
+import cs.cvut.fel.dbs.db.DatabaseConnection;
+import cs.cvut.fel.dbs.main.tables.instances.InstancesView;
+import cs.cvut.fel.dbs.main.tables.plants.PlantsView;
 import javafx.event.ActionEvent;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,9 +12,12 @@ public class Navigation {
     public void handleCrudPlantsButton() {
         // Load CRUD scene
         logger.info("Loading CRUD scene...");
-        CRUD.showCRUDScene();
         PlantsView.showPlantsRecordsList();
-        CRUD.addErrorMessageAndAddButton();
+    }
+    public void handleCrudInstancesButton() {
+        // Load CRUD scene
+        logger.info("Loading CRUD scene...");
+        InstancesView.showInstancesRecordsList();
     }
 
     public void handleSelectButton() {
@@ -20,6 +25,7 @@ public class Navigation {
         logger.info("Loading SELECT scene...");
     }
     public void exit(ActionEvent actionEvent) {
+        DatabaseConnection.close();
         GUI.getStage().close();
     }
     public void mainMenu(ActionEvent actionEvent) {

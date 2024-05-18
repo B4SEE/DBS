@@ -1,7 +1,6 @@
 package cs.cvut.fel.dbs.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -23,10 +22,6 @@ public class SectionsEntity {
     @Basic
     @Column(name = "light")
     private int light;
-    @OneToMany(mappedBy = "sectionId")
-    private Collection<InstancesEntity> instancesByIdSection;
-    @OneToMany(mappedBy = "worksInSection")
-    private Collection<ScientistsEntity> scientistsByIdSection;
     @ManyToOne
     @JoinColumn(name = "soil_type", referencedColumnName = "id_soil_type", nullable = false)
     private SoiltypesEntity soilType;
@@ -89,23 +84,6 @@ public class SectionsEntity {
     public int hashCode() {
         return Objects.hash(idSection, sectionName, geographicalCoordinates, soilType, climateType, temperature, light, isHandledBy);
     }
-
-    public Collection<InstancesEntity> getInstancesByIdSection() {
-        return instancesByIdSection;
-    }
-
-    public void setInstancesByIdSection(Collection<InstancesEntity> instancesByIdSection) {
-        this.instancesByIdSection = instancesByIdSection;
-    }
-
-    public Collection<ScientistsEntity> getScientistsByIdSection() {
-        return scientistsByIdSection;
-    }
-
-    public void setScientistsByIdSection(Collection<ScientistsEntity> scientistsByIdSection) {
-        this.scientistsByIdSection = scientistsByIdSection;
-    }
-
     public SoiltypesEntity getSoilType() {
         return soilType;
     }

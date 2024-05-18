@@ -19,7 +19,7 @@ public class InstancesEntity {
     private PlantsEntity plant;
     @ManyToOne
     @JoinColumn(name = "section_id", referencedColumnName = "id_section", nullable = false)
-    private SectionsEntity sectionId;
+    private SectionsEntity section;
 
     public String getInstanceName() {
         return instanceName;
@@ -41,12 +41,12 @@ public class InstancesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InstancesEntity that = (InstancesEntity) o;
-        return plant == that.plant && sectionId == that.sectionId && age == that.age && Objects.equals(instanceName, that.instanceName);
+        return plant == that.plant && section == that.section && age == that.age && Objects.equals(instanceName, that.instanceName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(instanceName, plant, sectionId, age);
+        return Objects.hash(instanceName, plant, section, age);
     }
 
     public PlantsEntity getPlant() {
@@ -57,11 +57,11 @@ public class InstancesEntity {
         this.plant = plantsByPlant;
     }
 
-    public SectionsEntity getSectionId() {
-        return sectionId;
+    public SectionsEntity getSection() {
+        return section;
     }
 
-    public void setSectionId(SectionsEntity sectionsBySectionId) {
-        this.sectionId = sectionsBySectionId;
+    public void setSection(SectionsEntity sectionsBySectionId) {
+        this.section = sectionsBySectionId;
     }
 }

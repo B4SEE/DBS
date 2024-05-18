@@ -21,7 +21,7 @@ public class PersonsEntity {
     @Basic
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
-    @OneToMany(mappedBy = "personId")
+    @OneToMany(mappedBy = "person")
     private Collection<EmployeesEntity> employees;
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id_address", nullable = false)

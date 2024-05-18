@@ -19,7 +19,7 @@ public class InstancesEntityPK implements Serializable {
     @Column(name = "section_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int sectionId;
+    private int section;
 
     public String getInstanceName() {
         return instanceName;
@@ -37,12 +37,12 @@ public class InstancesEntityPK implements Serializable {
         this.plant = plant;
     }
 
-    public int getSectionId() {
-        return sectionId;
+    public int getSection() {
+        return section;
     }
 
-    public void setSectionId(int sectionId) {
-        this.sectionId = sectionId;
+    public void setSection(int section) {
+        this.section = section;
     }
 
     @Override
@@ -50,11 +50,11 @@ public class InstancesEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InstancesEntityPK that = (InstancesEntityPK) o;
-        return plant == that.plant && sectionId == that.sectionId && Objects.equals(instanceName, that.instanceName);
+        return plant == that.plant && section == that.section && Objects.equals(instanceName, that.instanceName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(instanceName, plant, sectionId);
+        return Objects.hash(instanceName, plant, section);
     }
 }
