@@ -1,4 +1,4 @@
-package cs.cvut.fel.dbs.main.table_controllers;
+package cs.cvut.fel.dbs.main.tables;
 
 import cs.cvut.fel.dbs.main.GUI;
 import javafx.scene.control.Button;

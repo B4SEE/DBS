@@ -1,10 +1,10 @@
-package cs.cvut.fel.dbs.main.table_controllers.plants_controller;
+package cs.cvut.fel.dbs.main.tables.plants;
 
 import cs.cvut.fel.dbs.entities.ClimatetypesEntity;
 import cs.cvut.fel.dbs.entities.PlantsEntity;
 import cs.cvut.fel.dbs.entities.SoiltypesEntity;
 import cs.cvut.fel.dbs.main.CRUD;
-import cs.cvut.fel.dbs.main.table_controllers.RecordsController;
+import cs.cvut.fel.dbs.main.tables.RecordsController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -303,6 +303,15 @@ public class PlantsView {
         }
 
         setupSoilClimateTypesSaveAndCancelButtons(plant, isEdit);
+        CRUD.cancelButton.setOnAction(event -> {
+            showPlantsRecordsList();
+            PlantsDAO.selectedSoilTypes.clear();
+            if (plant != null) {
+                showPlantEditForm(plant);
+            } else {
+                showEmptyForm();
+            }
+        });
     }
     protected static void showAvailableClimateTypes(PlantsEntity plant, boolean isEdit, List<ClimatetypesEntity> availableClimateTypes) {
         CRUD.recordsGrid.getChildren().clear();
@@ -341,11 +350,6 @@ public class PlantsView {
         }
 
         setupSoilClimateTypesSaveAndCancelButtons(plant, isEdit);
-    }
-
-    private static void setupSoilClimateTypesSaveAndCancelButtons(PlantsEntity plant, boolean isEdit) {
-        CRUD.addErrorMessageAndAddButton();
-        CRUD.cancelButton.setVisible(true);
         CRUD.cancelButton.setOnAction(event -> {
             showPlantsRecordsList();
             PlantsDAO.selectedClimateTypes.clear();
@@ -355,6 +359,11 @@ public class PlantsView {
                 showEmptyForm();
             }
         });
+    }
+
+    private static void setupSoilClimateTypesSaveAndCancelButtons(PlantsEntity plant, boolean isEdit) {
+        CRUD.addErrorMessageAndAddButton();
+        CRUD.cancelButton.setVisible(true);
         CRUD.addButton.setText("Save selected");
         CRUD.addButton.setOnAction(event -> {
             logger.info("Saving selected soil/climate types...");

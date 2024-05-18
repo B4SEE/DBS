@@ -1,10 +1,12 @@
-package cs.cvut.fel.dbs.main.table_controllers.plants_controller;
+package cs.cvut.fel.dbs.main.tables.plants;
 
 import cs.cvut.fel.dbs.db.DatabaseConnection;
 import cs.cvut.fel.dbs.entities.ClimatetypesEntity;
 import cs.cvut.fel.dbs.entities.PlantsEntity;
 import cs.cvut.fel.dbs.entities.SoiltypesEntity;
 import cs.cvut.fel.dbs.main.CRUD;
+import cs.cvut.fel.dbs.main.tables.climate_types.ClimateTypesDAO;
+import cs.cvut.fel.dbs.main.tables.soil_types.SoilTypesDAO;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -22,7 +24,7 @@ public class PlantsDAO {
     protected static List<SoiltypesEntity> soilTypesToDelete = new ArrayList<>();
     protected static List<ClimatetypesEntity> climateTypesToDelete = new ArrayList<>();
     protected static PlantsFormController plantsFormController = new PlantsFormController();
-    protected static List<PlantsEntity> getAllPlants() {
+    public static List<PlantsEntity> getAllPlants() {
         List<PlantsEntity> plants = new ArrayList<>();
         try {
             String query = "SELECT * FROM plants";
@@ -30,13 +32,7 @@ public class PlantsDAO {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
                 PlantsEntity plant = new PlantsEntity();
-                plant.setIdPlant(result.getInt("id_plant"));
-                plant.setPlantName(result.getString("plant_name"));
-                plant.setPlantType(result.getString("plant_type"));
-                plant.setMaxTemperature(result.getInt("max_temperature"));
-                plant.setMinTemperature(result.getInt("min_temperature"));
-                plant.setMaxLight(result.getInt("max_light"));
-                plant.setMinLight(result.getInt("min_light"));
+                setPlantInfo(result, plant);
                 plants.add(plant);
             }
         } catch (SQLException e) {
@@ -44,6 +40,31 @@ public class PlantsDAO {
         }
         return plants;
     }
+    public static PlantsEntity getPlant(ResultSet plantInfo) {
+        if (plantInfo == null) {
+            return null;
+        }
+        PlantsEntity plant = new PlantsEntity();
+        try {
+            if (plantInfo.next()) {
+                setPlantInfo(plantInfo, plant);
+            }
+        } catch (SQLException e) {
+            logger.error("Failed to get plant: " + e.getMessage());
+        }
+        return plant;
+    }
+
+    private static void setPlantInfo(ResultSet plantInfo, PlantsEntity plant) throws SQLException {
+        plant.setIdPlant(plantInfo.getInt("id_plant"));
+        plant.setPlantName(plantInfo.getString("plant_name"));
+        plant.setPlantType(plantInfo.getString("plant_type"));
+        plant.setMaxTemperature(plantInfo.getInt("max_temperature"));
+        plant.setMinTemperature(plantInfo.getInt("min_temperature"));
+        plant.setMaxLight(plantInfo.getInt("max_light"));
+        plant.setMinLight(plantInfo.getInt("min_light"));
+    }
+
     protected static void clearAll() {
         selectedSoilTypes.clear();
         selectedClimateTypes.clear();
@@ -151,11 +172,7 @@ public class PlantsDAO {
             statement.executeQuery(query.toString());
             ResultSet result = statement.getResultSet();
             while (result.next()) {
-                SoiltypesEntity soilType = new SoiltypesEntity();
-                soilType.setIdSoilType(result.getInt("id_soil_type"));
-                soilType.setSoilName(result.getString("soil_name"));
-                soilType.setSoilDescription(result.getString("soil_description"));
-                availableSoilTypes.add(soilType);
+                availableSoilTypes.add(SoilTypesDAO.getSoilType(result));
             }
         } catch (Exception e) {
             logger.error("Failed to load soil types: " + e.getMessage());
@@ -197,11 +214,7 @@ public class PlantsDAO {
             statement.executeQuery(query.toString());
             ResultSet result = statement.getResultSet();
             while (result.next()) {
-                ClimatetypesEntity climateType = new ClimatetypesEntity();
-                climateType.setIdClimateType(result.getInt("id_climate_type"));
-                climateType.setClimateName(result.getString("climate_name"));
-                climateType.setClimateDescription(result.getString("climate_description"));
-                availableClimateTypes.add(climateType);
+                availableClimateTypes.add(ClimateTypesDAO.getClimateType(result));
             }
         } catch (Exception e) {
             logger.error("Failed to load climate types: " + e.getMessage());

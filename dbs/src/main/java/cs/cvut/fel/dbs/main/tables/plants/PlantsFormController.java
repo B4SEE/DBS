@@ -1,4 +1,4 @@
-package cs.cvut.fel.dbs.main.table_controllers.plants_controller;
+package cs.cvut.fel.dbs.main.tables.plants;
 
 import cs.cvut.fel.dbs.entities.PlantsEntity;
 import javafx.scene.control.Label;

@@ -1,4 +1,4 @@
-package cs.cvut.fel.dbs.main.table_controllers.plants_controller;
+package cs.cvut.fel.dbs.main.tables.plants;
 
 import cs.cvut.fel.dbs.db.DatabaseConnection;
 import cs.cvut.fel.dbs.entities.ClimatetypesEntity;
@@ -91,6 +91,9 @@ public class PlantsController {
                 PlantsView.showErrorMessage("No preferred climate types selected.");
             }
         }
+        if (!PlantsDAO.checkPlantNameIsUnique(new PlantsEntity())) {
+            PlantsView.showErrorMessage("Plant with this name already exists.");
+        }
         return PlantsView.isErrorMessageEmpty();
     }
     protected static void deletePreferredSoilType(SoiltypesEntity soilType) {
@@ -106,11 +109,7 @@ public class PlantsController {
         PlantsDAO.climateTypesToDelete.remove(climateType);
     }
     protected static void addNewPlant() {
-        if (!PlantsController.checkForm(PlantsDAO.plantsFormController, null)) {
-            return;
-        }
-        if (!PlantsDAO.checkPlantNameIsUnique(new PlantsEntity())) {
-            PlantsView.showErrorMessage("Plant with this name already exists.");
+        if (!checkForm(PlantsDAO.plantsFormController, null)) {
             return;
         }
         try {
@@ -137,11 +136,7 @@ public class PlantsController {
     protected static void editPlant(PlantsEntity plant) {
         try {
             PlantsDAO.updatePlant(plant);
-            if (!PlantsController.checkForm(PlantsDAO.plantsFormController, plant)) {
-                return;
-            }
-            if (!PlantsDAO.checkPlantNameIsUnique(new PlantsEntity())) {
-                PlantsView.showErrorMessage("Plant with this name already exists.");
+            if (!checkForm(PlantsDAO.plantsFormController, plant)) {
                 return;
             }
             EntityManager entityManager = DatabaseConnection.getEntityManager();

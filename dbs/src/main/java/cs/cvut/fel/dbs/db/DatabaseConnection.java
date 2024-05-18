@@ -76,4 +76,16 @@ public class DatabaseConnection {
         }
         return entityManagerFactory.createEntityManager();
     }
+    public static void close() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("Failed to close connection: " + e.getMessage());
+            }
+        }
+        if (entityManagerFactory != null) {
+            entityManagerFactory.close();
+        }
+    }
 }
