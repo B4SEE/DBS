@@ -5,9 +5,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -18,19 +16,10 @@
 <?import javafx.scene.control.ScrollPane?>
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="cs.cvut.fel.dbs.visuals.CRUD"
+      fx:controller="cs.cvut.fel.dbs.main.CRUD"
       stylesheets="@../layouts/css/mainMenu.css">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-        <menus>
-            <Menu mnemonicParsing="false" text="Navigation">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Main menu" onAction="#mainMenu" />
-                <MenuItem mnemonicParsing="false" text="Exit" onAction="#exit" />
-            </items>
-            </Menu>
-        </menus>
-    </MenuBar>
+    <fx:include source="MenuBar.fxml"/>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <ScrollPane>
@@ -47,13 +36,16 @@
             </children>
           </GridPane>
         </ScrollPane>
-        <GridPane fx:id="recordsGrid" >
-          <Label alignment="CENTER" font="$x1" prefHeight="27.0" prefWidth="400.0" style="&#10;" text="table name records" textAlignment="CENTER" textFill="$x2" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
-          <children>
-          </children>
-          <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="620.0" text="error message" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-          <Button fx:id="addButton" mnemonicParsing="false" text="add" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-        </GridPane>
+        <ScrollPane>
+          <GridPane fx:id="recordsGrid" >
+            <Label fx:id="recordsGridTitle" alignment="CENTER" font="$x1" prefHeight="27.0" prefWidth="400.0" style="&#10;" text="title" textAlignment="CENTER" textFill="$x2" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+            <children>
+            </children>
+            <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="620.0" text="error message" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="addButton" mnemonicParsing="false" text="add" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="cancel" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+          </GridPane>
+      </ScrollPane>
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">

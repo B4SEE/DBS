@@ -1,0 +1,24 @@
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.GridPane?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="cs.cvut.fel.dbs.main.Navigation"
+          stylesheets="@../layouts/css/mainMenu.css">
+    <MenuBar>
+        <menus>
+            <Menu mnemonicParsing="false" text="Navigation">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Main menu" onAction="#mainMenu" />
+                    <MenuItem mnemonicParsing="false" text="Exit" onAction="#exit" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="CRUD">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Plants" onAction="#handleCrudPlantsButton" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</GridPane>
