@@ -9,13 +9,13 @@ import org.apache.log4j.Logger;
 
 public class RecordsController {
     private static final Logger logger = LogManager.getLogger(RecordsController.class);
-    public static GridPane Grid;
-    public static Label recordInfo;
-    public static Button infoButton;
-    public static Button editButton;
-    public static Button deleteButton;
+    public GridPane Grid;
+    public Label recordInfo;
+    public Button infoButton;
+    public Button editButton;
+    public Button deleteButton;
 
-    public static GridPane getRecordGrid(String recordInfoText) {
+    public GridPane getRecordGrid(String recordInfoText) {
         logger.info("Initializing record grid...");
         GridPane grid = (GridPane) GUI.loadFXML("layouts/record.fxml");
         recordInfo = (Label) grid.lookup("#recordInfo");

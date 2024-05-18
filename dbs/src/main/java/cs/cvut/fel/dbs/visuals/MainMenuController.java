@@ -1,14 +1,12 @@
 package cs.cvut.fel.dbs.visuals;
 
+import cs.cvut.fel.dbs.visuals.table_controllers.plants_controller.PlantsController;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
-import javax.persistence.GeneratedValue;
 
 public class MainMenuController {
     private static final Logger logger = LogManager.getLogger(MainMenuController.class);
@@ -19,6 +17,8 @@ public class MainMenuController {
         // Load CRUD scene
         logger.info("Loading CRUD scene...");
         CRUD.showCRUDScene();
+        PlantsController.setPlantsRecordsList(CRUD.recordsGrid);
+        CRUD.addErrorMessageAndAddButton();
     }
 
     public void handleSelectButton(ActionEvent actionEvent) {

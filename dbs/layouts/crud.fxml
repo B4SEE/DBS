@@ -15,45 +15,38 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.ScrollPane?>
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="cs.cvut.fel.dbs.visuals.CRUD"
       stylesheets="@../layouts/css/mainMenu.css">
   <children>
     <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="Exit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-      </menus>
+        <menus>
+            <Menu mnemonicParsing="false" text="Navigation">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Main menu" onAction="#mainMenu" />
+                <MenuItem mnemonicParsing="false" text="Exit" onAction="#exit" />
+            </items>
+            </Menu>
+        </menus>
     </MenuBar>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane>
-          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="No record selected" textAlignment="CENTER" wrapText="false">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-              <textFill>
-                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
-              </textFill>
-            </Label>
-          </children>
-        </AnchorPane>
+        <ScrollPane>
+          <GridPane fx:id="recordsFormGrid" >
+            <children>
+              <Label fx:id="noRecordsSelectedLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="No record selected" textAlignment="CENTER" wrapText="false">
+                <font>
+                  <Font size="18.0" fx:id="x1" />
+                </font>
+                <textFill>
+                  <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
+                </textFill>
+              </Label>
+            </children>
+          </GridPane>
+        </ScrollPane>
         <GridPane fx:id="recordsGrid" >
           <Label alignment="CENTER" font="$x1" prefHeight="27.0" prefWidth="400.0" style="&#10;" text="table name records" textAlignment="CENTER" textFill="$x2" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
           <children>
