@@ -204,10 +204,10 @@ public class InstancesView {
                     recordsController.infoButton.setText("Select");
                 } else {
                     if (InstancesDAO.selectedPlant != null) {
-                        showWarningMessage("You can select only one plant type.");
+                        CRUD.showWarningMessage("You can select only one plant type.");
                         return;
                     }
-                    clearMessage();
+                    CRUD.clearMessage();
                     InstancesController.selectPlant(plant);
                     recordsController.recordInfo.setStyle("-fx-background-color: #ffae00");
                     recordsController.infoButton.setText("Unselect");
@@ -257,10 +257,10 @@ public class InstancesView {
                     recordsController.infoButton.setText("Select");
                 } else {
                     if (InstancesDAO.selectedSection != null) {
-                        showWarningMessage("You can select only one section.");
+                        CRUD.showWarningMessage("You can select only one section.");
                         return;
                     }
-                    clearMessage();
+                    CRUD.clearMessage();
                     InstancesController.selectSection(section);
                     recordsController.recordInfo.setStyle("-fx-background-color: #ffae00");
                     recordsController.infoButton.setText("Unselect");
@@ -297,32 +297,5 @@ public class InstancesView {
                 showEmptyForm();
             }
         });
-    }
-
-    protected static void showErrorMessage(String message) {
-        CRUD.errorMessage.setText(message);
-        CRUD.errorMessage.setStyle("-fx-text-fill: red");
-        CRUD.errorMessage.setVisible(true);
-    }
-    protected static void showWarningMessage(String message) {
-        CRUD.errorMessage.setText(message);
-        CRUD.errorMessage.setStyle("-fx-text-fill: orange");
-        CRUD.errorMessage.setVisible(true);
-    }
-    protected static void clearMessage() {
-        CRUD.errorMessage.setText("");
-    }
-    protected static void showInfoMessage(String message) {
-        CRUD.errorMessage.setText(message);
-        CRUD.errorMessage.setStyle("-fx-text-fill: blue");
-        CRUD.errorMessage.setVisible(true);
-    }
-    protected static void showSuccessMessage(String message) {
-        CRUD.errorMessage.setText(message);
-        CRUD.errorMessage.setStyle("-fx-text-fill: green");
-        CRUD.errorMessage.setVisible(true);
-    }
-    protected static boolean isErrorMessageEmpty() {
-        return CRUD.errorMessage.getText().isEmpty();
     }
 }

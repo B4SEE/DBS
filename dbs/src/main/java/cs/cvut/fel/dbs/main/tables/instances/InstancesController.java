@@ -5,6 +5,7 @@ import cs.cvut.fel.dbs.entities.InstancesEntity;
 import cs.cvut.fel.dbs.entities.InstancesEntityPK;
 import cs.cvut.fel.dbs.entities.PlantsEntity;
 import cs.cvut.fel.dbs.entities.SectionsEntity;
+import cs.cvut.fel.dbs.main.CRUD;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -13,36 +14,36 @@ import javax.persistence.EntityManager;
 public class InstancesController {
     private static final Logger logger = LogManager.getLogger(InstancesController.class);
     protected static boolean checkForm(InstancesFormController form, InstancesEntity instance) {
-        InstancesView.showErrorMessage("");
+        CRUD.showErrorMessage("");
         if (form.getInstanceNameField().getText().isEmpty()) {
-            InstancesView.showErrorMessage("Instance name cannot be empty.");
+            CRUD.showErrorMessage("Instance name cannot be empty.");
             return false;
         }
         if (form.getInstanceAgeField().getText().isEmpty()) {
-            InstancesView.showErrorMessage("Instance age cannot be empty.");
+            CRUD.showErrorMessage("Instance age cannot be empty.");
             return false;
         }
         // check if temperature and light values are numbers
         try {
             Integer.parseInt(form.getInstanceAgeField().getText());
         } catch (NumberFormatException e) {
-            InstancesView.showErrorMessage("Age must be a number.");
+            CRUD.showErrorMessage("Age must be a number.");
             return false;
         }
         if (form.getInstanceAge() < 0) {
-            InstancesView.showErrorMessage("Age must be a positive number.");
+            CRUD.showErrorMessage("Age must be a positive number.");
         }
         if (InstancesDAO.selectedPlant == null) {
             if (instance == null || instance.getPlant() == null) {
-                InstancesView.showErrorMessage("No plant selected.");
+                CRUD.showErrorMessage("No plant selected.");
             }
         }
         if (InstancesDAO.selectedSection == null) {
             if (instance == null || instance.getSection() == null) {
-                InstancesView.showErrorMessage("No section selected.");
+                CRUD.showErrorMessage("No section selected.");
             }
         }
-        return InstancesView.isErrorMessageEmpty();
+        return CRUD.isErrorMessageEmpty();
     }
     protected static void unselectPlant(PlantsEntity plant) {
         InstancesDAO.selectedPlant = null;
@@ -60,7 +61,7 @@ public class InstancesController {
         InstancesDAO.selectedSection = null;
     }
 
-    public static void addNewInstance() {
+    protected static void addNewInstance() {
         if (!checkForm(InstancesDAO.instancesFormController, null)) {
             return;
         }
@@ -80,7 +81,7 @@ public class InstancesController {
             // try to find existing instance (name + plant + section should be unique)
             InstancesEntity instanceInDb = entityManager.find(InstancesEntity.class, new InstancesEntityPK(instance.getInstanceName(), instance.getPlant().getIdPlant(), instance.getSection().getIdSection()));
             if (instanceInDb != null) {
-                InstancesView.showErrorMessage("Same instance already exists.");
+                CRUD.showErrorMessage("Same instance already exists.");
                 return;
             }
 
@@ -95,12 +96,12 @@ public class InstancesController {
         } catch (Exception e) {
             logger.error("Failed: " + e.getMessage());
             InstancesView.showInstancesRecordsList();
-            InstancesView.showErrorMessage("Failed: " + e.getMessage());
+            CRUD.showErrorMessage("Failed: " + e.getMessage());
         }
         InstancesDAO.clearAll();
     }
 
-    public static void editInstance(InstancesEntity instance) {
+    protected static void editInstance(InstancesEntity instance) {
         if (!checkForm(InstancesDAO.instancesFormController, instance)) {
             return;
         }
@@ -121,7 +122,7 @@ public class InstancesController {
             // try to find existing instance (name + plant + section should be unique)
             InstancesEntity instanceInDb = entityManager.find(InstancesEntity.class, new InstancesEntityPK(instance.getInstanceName(), instance.getPlant().getIdPlant(), instance.getSection().getIdSection()));
             if (instanceInDb != null) {
-                InstancesView.showErrorMessage("Same instance already exists.");
+                CRUD.showErrorMessage("Same instance already exists.");
                 return;
             }
 
@@ -138,7 +139,7 @@ public class InstancesController {
         } catch (Exception e) {
             logger.error("Failed: " + e.getMessage());
             InstancesView.showInstancesRecordsList();
-            InstancesView.showErrorMessage("Failed: " + e.getMessage());
+            CRUD.showErrorMessage("Failed: " + e.getMessage());
         }
         InstancesDAO.clearAll();
     }

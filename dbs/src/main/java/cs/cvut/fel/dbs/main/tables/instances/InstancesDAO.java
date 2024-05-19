@@ -23,7 +23,7 @@ public class InstancesDAO {
     protected static PlantsEntity selectedPlant = null;
     protected static SectionsEntity selectedSection = null;
     protected static InstancesFormController instancesFormController = new InstancesFormController();
-    protected static List<InstancesEntity> getAllInstances() {
+    public static List<InstancesEntity> getAllInstances() {
         List<InstancesEntity> instances = new ArrayList<>();
         Statement statement = null;
         ResultSet result = null;

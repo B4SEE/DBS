@@ -1,9 +1,5 @@
 package cs.cvut.fel.dbs.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
