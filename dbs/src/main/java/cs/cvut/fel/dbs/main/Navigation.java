@@ -6,6 +6,7 @@ import cs.cvut.fel.dbs.main.tables.climate_types.ClimateTypesView;
 import cs.cvut.fel.dbs.main.tables.instances.InstancesView;
 import cs.cvut.fel.dbs.main.tables.persons.PersonsView;
 import cs.cvut.fel.dbs.main.tables.plants.PlantsView;
+import cs.cvut.fel.dbs.main.tables.sections.SectionsView;
 import cs.cvut.fel.dbs.main.tables.soil_types.SoilTypesView;
 import javafx.event.ActionEvent;
 import org.apache.log4j.LogManager;
@@ -56,5 +57,11 @@ public class Navigation {
         // Load CRUD scene
         logger.info("Loading CRUD scene...");
         PersonsView.showPersonsRecordsList();
+    }
+
+    public void handleCrudSectionsButton(ActionEvent actionEvent) {
+        // Load CRUD scene
+        logger.info("Loading CRUD scene...");
+         SectionsView.showSectionsRecordsList();
     }
 }
