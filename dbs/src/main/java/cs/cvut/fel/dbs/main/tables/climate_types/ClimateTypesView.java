@@ -88,7 +88,7 @@ public class ClimateTypesView {
         int count = setFormFields(CRUD.recordsFormGrid, ClimateTypesDAO.climateTypesFormController, 1);
 
         Button addButton = new Button("Add");
-        addButton.setOnAction(event -> ClimateTypesController.addNewAddress());
+        addButton.setOnAction(event -> ClimateTypesController.addNewClimateType());
 
         Button cancelButton = getCancelButton();
 
@@ -97,7 +97,7 @@ public class ClimateTypesView {
     }
     private static Button getSubmitEditFormButton(ClimatetypesEntity climateType) {
         Button submitButton = new Button("Submit");
-        submitButton.setOnAction(event -> ClimateTypesController.editAddress(climateType));
+        submitButton.setOnAction(event -> ClimateTypesController.editClimateType(climateType));
         return submitButton;
     }
     private static Button getCancelButton() {

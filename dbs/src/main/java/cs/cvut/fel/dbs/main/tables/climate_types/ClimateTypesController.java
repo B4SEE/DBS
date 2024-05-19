@@ -18,13 +18,10 @@ public class ClimateTypesController {
             CRUD.showErrorMessage("Name cannot be empty.");
             return false;
         }
-        if (form.getClimateTypeDescriptionField().getText().isEmpty()) {
-            CRUD.showErrorMessage("Description cannot be empty.");
-            return false;
-        }
+        // description can be empty
         return CRUD.isErrorMessageEmpty();
     }
-    protected static void addNewAddress() {
+    protected static void addNewClimateType() {
         if (!checkForm(ClimateTypesDAO.climateTypesFormController)) {
             return;
         }
@@ -79,7 +76,7 @@ public class ClimateTypesController {
         ClimateTypesDAO.clearAll();
     }
 
-    protected static void editAddress(ClimatetypesEntity climateType) {
+    protected static void editClimateType(ClimatetypesEntity climateType) {
         if (!checkForm(ClimateTypesDAO.climateTypesFormController)) {
             return;
         }
