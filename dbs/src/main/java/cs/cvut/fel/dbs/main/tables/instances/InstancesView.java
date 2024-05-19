@@ -199,7 +199,7 @@ public class InstancesView {
 
             recordsController.infoButton.setOnAction(event -> {
                 if (InstancesDAO.selectedPlant != null && InstancesDAO.selectedPlant.equals(plant)) {
-                    InstancesController.unselectPlant(plant);
+                    InstancesController.unselectPlant();
                     recordsController.recordInfo.setStyle("");
                     recordsController.infoButton.setText("Select");
                 } else {
@@ -252,7 +252,7 @@ public class InstancesView {
 
             recordsController.infoButton.setOnAction(event -> {
                 if (InstancesDAO.selectedSection != null && InstancesDAO.selectedSection.equals(section)) {
-                    InstancesController.unselectSection(section);
+                    InstancesController.unselectSection();
                     recordsController.recordInfo.setStyle("");
                     recordsController.infoButton.setText("Select");
                 } else {

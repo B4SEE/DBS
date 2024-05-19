@@ -126,11 +126,11 @@ public class PersonsController {
             CRUD.showErrorMessage("Phone number cannot be empty.");
             return;
         }
-        if (PersonsDAO.phoneNumbers.contains(phoneNumber)) {
-            CRUD.showErrorMessage("Phone number already exists.");
+        if (!PersonsDAO.checkPhoneNumber(phoneNumber)) {
             return;
         }
-        if (!PersonsDAO.checkPhoneNumber(phoneNumber)) {
+        if (PersonsDAO.phoneNumbers.contains(phoneNumber)) {
+            CRUD.showErrorMessage("Phone number already added.");
             return;
         }
         PersonsDAO.phoneNumbers.add(phoneNumber);

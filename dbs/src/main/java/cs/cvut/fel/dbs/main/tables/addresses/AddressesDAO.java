@@ -66,13 +66,11 @@ public class AddressesDAO {
     }
     public static void setAddressInfo(ResultSet addressInfo, AddressesEntity address) {
         try {
-            logger.info("Setting address info...");
             address.setIdAddress(addressInfo.getInt("id_address"));
             address.setHouseNumber(addressInfo.getString("house_number"));
             address.setStreet(addressInfo.getString("street"));
             address.setCity(addressInfo.getString("city"));
             address.setZipCode(addressInfo.getString("zip_code"));
-            logger.info("Address info: " + address.getCity() + " " + address.getStreet() + " " + address.getHouseNumber() + " " + address.getZipCode());
         } catch (Exception e) {
             logger.error("Error while setting address info: " + e.getMessage());
         }

@@ -45,7 +45,7 @@ public class InstancesController {
         }
         return CRUD.isErrorMessageEmpty();
     }
-    protected static void unselectPlant(PlantsEntity plant) {
+    protected static void unselectPlant() {
         InstancesDAO.selectedPlant = null;
     }
 
@@ -57,7 +57,7 @@ public class InstancesController {
         InstancesDAO.selectedSection = section;
     }
 
-    protected static void unselectSection(SectionsEntity section) {
+    protected static void unselectSection() {
         InstancesDAO.selectedSection = null;
     }
 
