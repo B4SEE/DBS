@@ -4,6 +4,7 @@ import cs.cvut.fel.dbs.db.DatabaseConnection;
 import cs.cvut.fel.dbs.entities.ClimatetypesEntity;
 import cs.cvut.fel.dbs.entities.PlantsEntity;
 import cs.cvut.fel.dbs.entities.SoiltypesEntity;
+import cs.cvut.fel.dbs.main.CRUD;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -13,88 +14,88 @@ import javax.persistence.RollbackException;
 public class PlantsController {
     private static final Logger logger = LogManager.getLogger(PlantsController.class);
     protected static boolean checkForm(PlantsFormController form, PlantsEntity plant) {
-        PlantsView.showErrorMessage("");
+        CRUD.showErrorMessage("");
         if (form.getPlantName().isEmpty()) {
-            PlantsView.showErrorMessage("Plant name cannot be empty.");
+            CRUD.showErrorMessage("Plant name cannot be empty.");
             return false;
         }
         if (form.getPlantType().isEmpty()) {
-            PlantsView.showErrorMessage("Plant type cannot be empty.");
+            CRUD.showErrorMessage("Plant type cannot be empty.");
             return false;
         }
         if (form.getMinTemperatureField().getText().isEmpty()) {
-            PlantsView.showErrorMessage("Min temperature cannot be empty.");
+            CRUD.showErrorMessage("Min temperature cannot be empty.");
             return false;
         }
         if (form.getMaxTemperatureField().getText().isEmpty()) {
-            PlantsView.showErrorMessage("Max temperature cannot be empty.");
+            CRUD.showErrorMessage("Max temperature cannot be empty.");
             return false;
         }
         if (form.getMinLightField().getText().isEmpty()) {
-            PlantsView.showErrorMessage("Min light cannot be empty.");
+            CRUD.showErrorMessage("Min light cannot be empty.");
             return false;
         }
         if (form.getMaxLightField().getText().isEmpty()) {
-            PlantsView.showErrorMessage("Max light cannot be empty.");
+            CRUD.showErrorMessage("Max light cannot be empty.");
             return false;
         }
         // check if temperature and light values are numbers
         try {
             Integer.parseInt(form.getMinTemperatureField().getText());
         } catch (NumberFormatException e) {
-            PlantsView.showErrorMessage("Min temperature must be a number.");
+            CRUD.showErrorMessage("Min temperature must be a number.");
             return false;
         }
         try {
             Integer.parseInt(form.getMaxTemperatureField().getText());
         } catch (NumberFormatException e) {
-            PlantsView.showErrorMessage("Max temperature must be a number.");
+            CRUD.showErrorMessage("Max temperature must be a number.");
             return false;
         }
         try {
             Integer.parseInt(form.getMinLightField().getText());
         } catch (NumberFormatException e) {
-            PlantsView.showErrorMessage("Min light must be a number.");
+            CRUD.showErrorMessage("Min light must be a number.");
             return false;
         }
         try {
             Integer.parseInt(form.getMaxLightField().getText());
         } catch (NumberFormatException e) {
-            PlantsView.showErrorMessage("Max light must be a number.");
+            CRUD.showErrorMessage("Max light must be a number.");
             return false;
         }
         if (!(form.getMinTemperature() >= 0 && form.getMinTemperature() <= 40)) {
-            PlantsView.showErrorMessage("Temperature must be between 0 and 40.");
+            CRUD.showErrorMessage("Temperature must be between 0 and 40.");
         }
         if (!(form.getMaxTemperature() >= 0 && form.getMaxTemperature() <= 40)) {
-            PlantsView.showErrorMessage("Temperature must be between 0 and 40.");
+            CRUD.showErrorMessage("Temperature must be between 0 and 40.");
         }
         if (form.getMinTemperature() > form.getMaxTemperature()) {
-            PlantsView.showErrorMessage("Min temperature cannot be higher than max temperature.");
+            CRUD.showErrorMessage("Min temperature cannot be higher than max temperature.");
         }
         if (!(form.getMinLight() >= 0 || form.getMinLight() <= 100)) {
-            PlantsView.showErrorMessage("Light must be between 0 and 100.");
+            CRUD.showErrorMessage("Light must be between 0 and 100.");
         }
         if (!(form.getMaxLight() >= 0 || form.getMaxLight() <= 100)) {
-            PlantsView.showErrorMessage("Light must be between 0 and 100.");
+            CRUD.showErrorMessage("Light must be between 0 and 100.");
         }
         if (form.getMinLight() > form.getMaxLight()) {
-            PlantsView.showErrorMessage("Min light cannot be higher than max light.");
+            CRUD.showErrorMessage("Min light cannot be higher than max light.");
         }
         if (PlantsDAO.selectedSoilTypes.isEmpty()) {
             if (plant == null || plant.getPreferredSoilTypes().isEmpty()) {
-                PlantsView.showErrorMessage("No preferred soil types selected.");
+                CRUD.showErrorMessage("No preferred soil types selected.");
             }
         }
         if (PlantsDAO.selectedClimateTypes.isEmpty()) {
             if (plant == null || plant.getPreferredClimateTypes().isEmpty()) {
-                PlantsView.showErrorMessage("No preferred climate types selected.");
+                CRUD.showErrorMessage("No preferred climate types selected.");
             }
         }
         if (!PlantsDAO.checkPlantNameIsUnique(new PlantsEntity())) {
-            PlantsView.showErrorMessage("Plant with this name already exists.");
+            CRUD.showErrorMessage("Plant with this name already exists.");
         }
-        return PlantsView.isErrorMessageEmpty();
+        return CRUD.isErrorMessageEmpty();
     }
     protected static void deletePreferredSoilType(SoiltypesEntity soilType) {
         PlantsDAO.soilTypesToDelete.add(soilType);
@@ -129,7 +130,7 @@ public class PlantsController {
         } catch (Exception e) {
             logger.error("Failed: " + e.getMessage());
             PlantsView.showPlantsRecordsList();
-            PlantsView.showErrorMessage("Failed: " + e.getMessage());
+            CRUD.showErrorMessage("Failed: " + e.getMessage());
         }
         PlantsDAO.clearAll();
     }
@@ -152,11 +153,11 @@ public class PlantsController {
         } catch (RollbackException e) {
             logger.error("Transaction failed and has been rolled back: " + e.getMessage());
             PlantsView.showPlantsRecordsList();
-            PlantsView.showErrorMessage("Failed: " + e.getMessage());
+            CRUD.showErrorMessage("Failed: " + e.getMessage());
         } catch (Exception e) {
             logger.error("Failed: " + e.getMessage());
             PlantsView.showPlantsRecordsList();
-            PlantsView.showErrorMessage("Failed: " + e.getMessage());
+            CRUD.showErrorMessage("Failed: " + e.getMessage());
         }
         PlantsDAO.clearAll();
     }

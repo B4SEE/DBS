@@ -43,7 +43,6 @@ public class PlantsView {
             });
             recordsController.deleteButton.setOnAction(event -> {
                 PlantsDAO.deletePlant(plant);
-                showPlantsRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
             logger.info("Plant record added: " + plant.getPlantName() + "at row " + count);
@@ -377,13 +376,5 @@ public class PlantsView {
                 showEmptyForm();
             }
         });
-    }
-
-    protected static void showErrorMessage(String message) {
-        CRUD.errorMessage.setText(message);
-        CRUD.errorMessage.setVisible(true);
-    }
-    protected static boolean isErrorMessageEmpty() {
-        return CRUD.errorMessage.getText().isEmpty();
     }
 }

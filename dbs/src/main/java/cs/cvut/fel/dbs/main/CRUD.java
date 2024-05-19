@@ -19,6 +19,8 @@ public class CRUD {
     public static GridPane recordsFormGrid;
     public static Label noRecordsSelectedLabel;
     public static Label recordsGridTitle;
+    public static Button nextPageButton;
+    public static Button previousPageButton;
 
     public static void showCRUDScene() {
         // Load fxml file
@@ -35,6 +37,10 @@ public class CRUD {
         errorMessage.setStyle("-fx-text-fill: red");
         addButton = (Button) grid.lookup("#addButton");
         cancelButton = (Button) grid.lookup("#cancelButton");
+        nextPageButton = (Button) grid.lookup("#nextPageButton");
+        previousPageButton = (Button) grid.lookup("#previousPageButton");
+        nextPageButton.setVisible(false);
+        previousPageButton.setVisible(false);
         cancelButton.setVisible(false);
     }
     public static void addErrorMessageAndAddButton() {
@@ -48,5 +54,33 @@ public class CRUD {
         GridPane.setRowIndex(errorMessage, numRows + 1);
         GridPane.setRowIndex(addButton, numRows + 2);
         GridPane.setRowIndex(cancelButton, numRows + 3);
+        GridPane.setRowIndex(nextPageButton, numRows + 4);
+        GridPane.setRowIndex(previousPageButton, numRows + 5);
+    }
+    public static void showErrorMessage(String message) {
+        CRUD.errorMessage.setText(message);
+        CRUD.errorMessage.setStyle("-fx-text-fill: red");
+        CRUD.errorMessage.setVisible(true);
+    }
+    public static void showWarningMessage(String message) {
+        CRUD.errorMessage.setText(message);
+        CRUD.errorMessage.setStyle("-fx-text-fill: orange");
+        CRUD.errorMessage.setVisible(true);
+    }
+    public static void showInfoMessage(String message) {
+        CRUD.errorMessage.setText(message);
+        CRUD.errorMessage.setStyle("-fx-text-fill: blue");
+        CRUD.errorMessage.setVisible(true);
+    }
+    public static void showSuccessMessage(String message) {
+        CRUD.errorMessage.setText(message);
+        CRUD.errorMessage.setStyle("-fx-text-fill: green");
+        CRUD.errorMessage.setVisible(true);
+    }
+    public static void clearMessage() {
+        CRUD.errorMessage.setText("");
+    }
+    public static boolean isErrorMessageEmpty() {
+        return CRUD.errorMessage.getText().isEmpty();
     }
 }

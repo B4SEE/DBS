@@ -1,6 +1,8 @@
 package cs.cvut.fel.dbs.main;
 
 import cs.cvut.fel.dbs.db.DatabaseConnection;
+import cs.cvut.fel.dbs.main.tables.addresses.AddressesView;
+import cs.cvut.fel.dbs.main.tables.climate_types.ClimateTypesView;
 import cs.cvut.fel.dbs.main.tables.instances.InstancesView;
 import cs.cvut.fel.dbs.main.tables.plants.PlantsView;
 import javafx.event.ActionEvent;
@@ -19,6 +21,11 @@ public class Navigation {
         logger.info("Loading CRUD scene...");
         InstancesView.showInstancesRecordsList();
     }
+    public void handleCrudAddressesButton() {
+        // Load CRUD scene
+        logger.info("Loading CRUD scene...");
+        AddressesView.showAddressesRecordsList();
+    }
 
     public void handleSelectButton() {
         // Load SELECT scene
@@ -30,5 +37,11 @@ public class Navigation {
     }
     public void mainMenu(ActionEvent actionEvent) {
         GUI.showMainMenu();
+    }
+
+    public void handleCrudClimateTypesButton(ActionEvent actionEvent) {
+        // Load CRUD scene
+        logger.info("Loading CRUD scene...");
+        ClimateTypesView.showClimateTypesRecordsList();
     }
 }

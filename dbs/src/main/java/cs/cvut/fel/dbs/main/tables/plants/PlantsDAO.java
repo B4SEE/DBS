@@ -97,7 +97,7 @@ public class PlantsDAO {
         try {
             if (result.next()) {
                 PlantsView.showPlantsRecordsList();
-                PlantsView.showErrorMessage("Failed to delete plant: There are associated instances with this plant.");
+                CRUD.showErrorMessage("Failed to delete plant: There are associated instances with this plant.");
                 logger.error("Failed to delete plant: There are associated instances with this plant.");
                 return;
             }
@@ -108,11 +108,12 @@ public class PlantsDAO {
 
         entityManager.remove(plantInDb);
         entityManager.getTransaction().commit();
+        PlantsView.showPlantsRecordsList();
         logger.info("Plant deleted successfully.");
     }
     protected static void deletePreferredSoilType(PlantsEntity plant, SoiltypesEntity soilType) {
         if (plant.getPreferredSoilTypes().size() == 1) {
-            PlantsView.showErrorMessage("Failed: Plant must have at least one preferred soil type.");
+            CRUD.showErrorMessage("Failed: Plant must have at least one preferred soil type.");
             logger.error("Failed: Plant must have at least one preferred soil type.");
             return;
         }
@@ -122,7 +123,7 @@ public class PlantsDAO {
     }
     protected static void deletePreferredClimateType(PlantsEntity plant, ClimatetypesEntity climateType) {
         if (plant.getPreferredClimateTypes().size() == 1) {
-            PlantsView.showErrorMessage("Failed: Plant must have at least one preferred climate type.");
+            CRUD.showErrorMessage("Failed: Plant must have at least one preferred climate type.");
             logger.error("Failed: Plant must have at least one preferred climate type.");
             return;
         }
