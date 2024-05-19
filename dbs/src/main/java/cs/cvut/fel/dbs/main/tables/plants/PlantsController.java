@@ -92,9 +92,6 @@ public class PlantsController {
                 CRUD.showErrorMessage("No preferred climate types selected.");
             }
         }
-        if (!PlantsDAO.checkPlantNameIsUnique(new PlantsEntity())) {
-            CRUD.showErrorMessage("Plant with this name already exists.");
-        }
         return CRUD.isErrorMessageEmpty();
     }
     protected static void deletePreferredSoilType(SoiltypesEntity soilType) {
@@ -117,6 +114,11 @@ public class PlantsController {
             PlantsEntity plant = new PlantsEntity();
             PlantsDAO.updatePlant(plant);
 
+            if (!PlantsDAO.checkPlantNameIsUnique(plant)) {
+                CRUD.showErrorMessage("Plant with this name already exists.");
+                return;
+            }
+
             EntityManager entityManager = DatabaseConnection.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.persist(plant);
@@ -137,9 +139,15 @@ public class PlantsController {
     protected static void editPlant(PlantsEntity plant) {
         try {
             PlantsDAO.updatePlant(plant);
+
             if (!checkForm(PlantsDAO.plantsFormController, plant)) {
                 return;
             }
+            if (!PlantsDAO.checkPlantNameIsUnique(plant)) {
+                CRUD.showErrorMessage("Plant with this name already exists.");
+                return;
+            }
+
             EntityManager entityManager = DatabaseConnection.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.merge(plant);

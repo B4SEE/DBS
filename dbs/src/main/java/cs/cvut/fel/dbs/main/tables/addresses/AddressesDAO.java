@@ -64,7 +64,7 @@ public class AddressesDAO {
         }
         return address;
     }
-    private static void setAddressInfo(ResultSet addressInfo, AddressesEntity address) {
+    public static void setAddressInfo(ResultSet addressInfo, AddressesEntity address) {
         try {
             logger.info("Setting address info...");
             address.setIdAddress(addressInfo.getInt("id_address"));
