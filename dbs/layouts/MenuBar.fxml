@@ -22,7 +22,10 @@
                     <MenuItem mnemonicParsing="false" text="Plant Instances" onAction="#handleCrudInstancesButton" />
                     <MenuItem mnemonicParsing="false" text="Sections" onAction="#handleCrudSectionsButton" />
                     <MenuItem mnemonicParsing="false" text="Persons" onAction="#handleCrudPersonsButton" />
+                    <MenuItem mnemonicParsing="false" text="Scientists" onAction="#handleCrudScientistsButton" />
+                    <MenuItem mnemonicParsing="false" text="Employees" onAction="#handleCrudEmployeesButton" />
                     <MenuItem mnemonicParsing="false" text="Addresses" onAction="#handleCrudAddressesButton" />
+                    <MenuItem mnemonicParsing="false" text="Researches" onAction="#handleCrudResearchesButton" />
                 </items>
             </Menu>
         </menus>

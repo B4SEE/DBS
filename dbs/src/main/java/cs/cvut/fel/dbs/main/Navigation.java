@@ -3,9 +3,12 @@ package cs.cvut.fel.dbs.main;
 import cs.cvut.fel.dbs.db.DatabaseConnection;
 import cs.cvut.fel.dbs.main.tables.addresses.AddressesView;
 import cs.cvut.fel.dbs.main.tables.climate_types.ClimateTypesView;
+import cs.cvut.fel.dbs.main.tables.employees.EmployeesView;
 import cs.cvut.fel.dbs.main.tables.instances.InstancesView;
 import cs.cvut.fel.dbs.main.tables.persons.PersonsView;
 import cs.cvut.fel.dbs.main.tables.plants.PlantsView;
+import cs.cvut.fel.dbs.main.tables.researches.ResearchesView;
+import cs.cvut.fel.dbs.main.tables.scientists.ScientistsView;
 import cs.cvut.fel.dbs.main.tables.sections.SectionsView;
 import cs.cvut.fel.dbs.main.tables.soil_types.SoilTypesView;
 import javafx.event.ActionEvent;
@@ -62,6 +65,24 @@ public class Navigation {
     public void handleCrudSectionsButton(ActionEvent actionEvent) {
         // Load CRUD scene
         logger.info("Loading CRUD scene...");
-         SectionsView.showSectionsRecordsList();
+        SectionsView.showSectionsRecordsList();
+    }
+
+    public void handleCrudScientistsButton(ActionEvent actionEvent) {
+        // Load CRUD scene
+        logger.info("Loading CRUD scene...");
+        ScientistsView.showScientistsRecordsList();
+    }
+
+    public void handleCrudResearchesButton(ActionEvent actionEvent) {
+        // Load CRUD scene
+        logger.info("Loading CRUD scene...");
+        ResearchesView.showResearchesRecordsList();
+    }
+
+    public void handleCrudEmployeesButton(ActionEvent actionEvent) {
+        // Load CRUD scene
+        logger.info("Loading CRUD scene...");
+        EmployeesView.showEmployeesRecordsList();
     }
 }
