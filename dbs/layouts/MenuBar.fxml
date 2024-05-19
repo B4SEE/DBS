@@ -19,7 +19,8 @@
                     <MenuItem mnemonicParsing="false" text="Soil types" onAction="#handleCrudSoilTypesButton" />
                     <MenuItem mnemonicParsing="false" text="Climate types" onAction="#handleCrudClimateTypesButton" />
                     <MenuItem mnemonicParsing="false" text="Plants" onAction="#handleCrudPlantsButton" />
-                    <MenuItem mnemonicParsing="false" text="Instances" onAction="#handleCrudInstancesButton" />
+                    <MenuItem mnemonicParsing="false" text="Plant Instances" onAction="#handleCrudInstancesButton" />
+                    <MenuItem mnemonicParsing="false" text="Persons" onAction="#handleCrudPersonsButton" />
                     <MenuItem mnemonicParsing="false" text="Addresses" onAction="#handleCrudAddressesButton" />
                 </items>
             </Menu>
