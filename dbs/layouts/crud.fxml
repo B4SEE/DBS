@@ -44,6 +44,8 @@
             <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="620.0" text="error message" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button fx:id="addButton" mnemonicParsing="false" text="add" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <Button fx:id="cancelButton" mnemonicParsing="false" text="cancel" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="nextPageButton" mnemonicParsing="false" text="next" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="previousPageButton" mnemonicParsing="false" text="previous" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
           </GridPane>
       </ScrollPane>
       </items>
