@@ -203,8 +203,8 @@ public class PersonsView {
             for (String phoneNumber : PersonsDAO.phoneNumbers) {
                 Label phoneNumberLabel = new Label(phoneNumber);
                 Button deletePhoneNumberButton = getDeletePhoneNumberButton(phoneNumber, null);
-                CRUD.recordsFormGrid.add(deletePhoneNumberButton, 1, count);
-                CRUD.recordsFormGrid.add(phoneNumberLabel, 0, count++);
+                CRUD.recordsFormGrid.add(phoneNumberLabel, 0, count);
+                CRUD.recordsFormGrid.add(deletePhoneNumberButton, 1, count++);
             }
         }
 

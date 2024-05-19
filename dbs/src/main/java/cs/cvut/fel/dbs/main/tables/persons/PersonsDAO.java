@@ -37,12 +37,15 @@ public class PersonsDAO {
         return persons;
     }
     public static PersonsEntity getPerson(ResultSet personInfo) {
+        logger.info("Getting person...");
         if (personInfo == null) {
+            logger.error("Person info is null.");
             return null;
         }
         PersonsEntity person = new PersonsEntity();
         try {
             if (personInfo.next()) {
+                logger.info("Person found.");
                 setPersonInfo(personInfo, person);
             }
         } catch (Exception e) {
@@ -52,6 +55,7 @@ public class PersonsDAO {
     }
     private static void setPersonInfo(ResultSet personInfo, PersonsEntity person) {
         try {
+            logger.info("Setting person info...");
             person.setIdPerson(personInfo.getInt("id_person"));
             person.setFirstName(personInfo.getString("first_name"));
             person.setLastName(personInfo.getString("last_name"));
@@ -60,6 +64,7 @@ public class PersonsDAO {
             Statement addressStatement = DatabaseConnection.getConnection().createStatement();
             ResultSet addressResult = addressStatement.executeQuery(addressQuery);
             person.setAddressId(AddressesDAO.getAddress(addressResult));
+            logger.info("Person info set: " + person.getFirstName() + " " + person.getLastName());
         } catch (Exception e) {
             logger.error("Error while setting person info: " + e.getMessage());
         }

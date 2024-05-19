@@ -71,6 +71,7 @@ public class InstancesController {
             InstancesEntity instance = new InstancesEntity();
             InstancesDAO.updateInstance(instance);
 
+            //already checked in checkForm
             if (InstancesDAO.selectedSection != null) {
                 instance.setSection(InstancesDAO.selectedSection);
             }
@@ -80,6 +81,7 @@ public class InstancesController {
 
             // try to find existing instance (name + plant + section should be unique)
             InstancesEntity instanceInDb = entityManager.find(InstancesEntity.class, new InstancesEntityPK(instance.getInstanceName(), instance.getPlant().getIdPlant(), instance.getSection().getIdSection()));
+            // if the instance already exists, show error message
             if (instanceInDb != null) {
                 CRUD.showErrorMessage("Same instance already exists.");
                 return;
@@ -122,8 +124,11 @@ public class InstancesController {
             // try to find existing instance (name + plant + section should be unique)
             InstancesEntity instanceInDb = entityManager.find(InstancesEntity.class, new InstancesEntityPK(instance.getInstanceName(), instance.getPlant().getIdPlant(), instance.getSection().getIdSection()));
             if (instanceInDb != null) {
-                CRUD.showErrorMessage("Same instance already exists.");
-                return;
+                // if the instance is the same as the one we are editing, it is ok
+                if (!instanceInDb.equals(oldInstance)) {
+                    CRUD.showErrorMessage("Same instance already exists.");
+                    return;
+                }
             }
 
             entityManager.getTransaction().begin();
