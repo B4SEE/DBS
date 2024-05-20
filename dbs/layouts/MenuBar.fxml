@@ -28,6 +28,11 @@
                     <MenuItem mnemonicParsing="false" text="Researches" onAction="#handleCrudResearchesButton" />
                 </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Management">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="View sections" onAction="#handleViewSectionsButton" />
+                </items>
+            </Menu>
         </menus>
     </MenuBar>
 </GridPane>
