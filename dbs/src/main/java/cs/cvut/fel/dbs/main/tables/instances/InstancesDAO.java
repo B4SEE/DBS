@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InstancesDAO {
+    public static int page = 1;
+    public static int recordsPerPage = 15;
     private static final Logger logger = LogManager.getLogger(InstancesDAO.class);
     protected static PlantsEntity selectedPlant = null;
     protected static SectionsEntity selectedSection = null;
@@ -29,7 +31,7 @@ public class InstancesDAO {
         ResultSet result = null;
 
         try {
-            String query = "SELECT * FROM instances";
+            String query = "SELECT * FROM instances ORDER BY instance_name LIMIT " + recordsPerPage + " OFFSET " + (page - 1) * recordsPerPage;
             statement = DatabaseConnection.getConnection().createStatement();
             result = statement.executeQuery(query);
             while (result.next()) {

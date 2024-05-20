@@ -16,6 +16,7 @@ import java.util.Objects;
 @javax.persistence.Table(name = "plants", schema = "public", catalog = "virycele")
 public class PlantsEntity {
     private static final Logger logger = LogManager.getLogger(PlantsEntity.class);
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @javax.persistence.Column(name = "id_plant")

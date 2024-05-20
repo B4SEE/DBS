@@ -29,6 +29,16 @@ public class EmployeesController {
             EmployeesEntity employee = new EmployeesEntity();
             EmployeesDAO.updateEmployee(employee);
 
+            if (!EmployeesDAO.checkEmployeeNumberFormat(employee.getEmployeeNumber())) {
+                CRUD.showErrorMessage("Employee ID is not in correct format. It should be E followed by 6 digits.");
+                return;
+            }
+
+            if (!EmployeesDAO.checkEmployeeCodeIsUnique(employee)) {
+                CRUD.showErrorMessage("Employee ID is not unique.");
+                return;
+            }
+
             if (EmployeesDAO.selectedPerson != null) {
                 employee.setPerson(EmployeesDAO.selectedPerson);
             }
@@ -61,6 +71,16 @@ public class EmployeesController {
                 return;
             }
             EmployeesDAO.updateEmployee(employee);
+
+            if (!EmployeesDAO.checkEmployeeNumberFormat(employee.getEmployeeNumber())) {
+                CRUD.showErrorMessage("Employee ID is not in correct format. It should be E followed by 6 digits.");
+                return;
+            }
+
+            if (!EmployeesDAO.checkEmployeeCodeIsUnique(employee)) {
+                CRUD.showErrorMessage("Employee ID is not unique.");
+                return;
+            }
 
             if (EmployeesDAO.selectedPerson != null) {
                 employee.setPerson(EmployeesDAO.selectedPerson);

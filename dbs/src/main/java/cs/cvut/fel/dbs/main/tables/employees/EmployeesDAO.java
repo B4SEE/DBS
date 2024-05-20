@@ -73,31 +73,24 @@ public class EmployeesDAO {
         }
     }
     protected static boolean checkEmployeeCodeIsUnique(EmployeesEntity employee) {
-        EntityManager entityManager = DatabaseConnection.getEntityManager();
-        List<EmployeesEntity> employees = entityManager.createQuery("SELECT e FROM EmployeesEntity e WHERE e.employeeNumber = :employeeNumber AND e.idEmployee != :idEmployee", EmployeesEntity.class)
-                .setParameter("employeeNumber", employee.getEmployeeNumber())
-                .setParameter("idEmployee", employee.getIdEmployee())
-                .getResultList();
+        try {
+            EntityManager entityManager = DatabaseConnection.getEntityManager();
+            List<EmployeesEntity> employees = entityManager.createQuery("SELECT e FROM EmployeesEntity e WHERE e.employeeNumber = :employeeNumber AND e.idEmployee != :idEmployee", EmployeesEntity.class)
+                    .setParameter("employeeNumber", employee.getEmployeeNumber())
+                    .setParameter("idEmployee", employee.getIdEmployee())
+                    .getResultList();
 
-        return employees.isEmpty();
+            return employees.isEmpty();
+        } catch (Exception e) {
+            logger.error("Error while checking employee code uniqueness: " + e.getMessage());
+            return false;
+        }
     }
-    protected static boolean checkEmployeeNumber(EmployeesEntity employee) {
-        // check if employee number is unique
-        EntityManager entityManager = DatabaseConnection.getEntityManager();
-        List<EmployeesEntity> employees = entityManager.createQuery("SELECT e FROM EmployeesEntity e WHERE e.employeeNumber = :employeeNumber AND e.idEmployee != :idEmployee", EmployeesEntity.class)
-                .setParameter("employeeNumber", employee.getEmployeeNumber())
-                .setParameter("idEmployee", employee.getIdEmployee())
-                .getResultList();
-        if (!employees.isEmpty()) {
-            CRUD.showErrorMessage("Employee number is not unique.");
-            return false;
-        }
+    protected static boolean checkEmployeeNumberFormat(String employeeNumber) {
         //check format employee_number ~ '^E[0-9]{6}$'
-        if (!employee.getEmployeeNumber().matches("^E[0-9]{6}$")) {
-            CRUD.showErrorMessage("Employee number must be in format E[0-9]{6}.");
-            return false;
-        }
-        return true;
+        logger.info("Checking employee number format: " + employeeNumber);
+        logger.info("Result: " + employeeNumber.matches("^E[0-9]{6}$"));
+        return employeeNumber.matches("^E[0-9]{6}$");
     }
 
     public static void updateEmployee(EmployeesEntity employee) {
@@ -129,7 +122,8 @@ public class EmployeesDAO {
 
             // delete employee
             entityManager.getTransaction().begin();
-            entityManager.remove(employee);
+            EmployeesEntity managedEmployee = entityManager.merge(employee);
+            entityManager.remove(managedEmployee);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             logger.error("Error while deleting employee: " + e.getMessage());
@@ -148,11 +142,15 @@ public class EmployeesDAO {
         StringBuilder query = new StringBuilder("SELECT * FROM employees WHERE id_employee != ");
         if (employee != null) {
             query.append(employee.getIdEmployee());
-            logger.info("Query: " + query);
+            if (employee.getIsSupervisedBy() != null) {
+                query.append(" AND id_employee != ").append(employee.getIsSupervisedBy().getIdEmployee());
+            }
             query.append(" AND id_employee NOT IN (SELECT id_employee FROM employees WHERE is_supervised_by = ").append(employee.getIdEmployee()).append(")");
         } else {
             query.append(selectedSupervisor.getIdEmployee());
-            logger.info("Query: " + query);
+            if (selectedSupervisor.getIsSupervisedBy() != null) {
+                query.append(" AND id_employee != ").append(selectedSupervisor.getIsSupervisedBy().getIdEmployee());
+            }
             query.append(" AND id_employee NOT IN (SELECT id_employee FROM employees WHERE is_supervised_by = ").append(selectedSupervisor.getIdEmployee()).append(")");
         }
         List<EmployeesEntity> availableSupervisors = new ArrayList<>();

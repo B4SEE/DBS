@@ -172,7 +172,7 @@ public class PlantsDAO {
             Statement statement = DatabaseConnection.getConnection().createStatement();
             statement.executeQuery(query.toString());
             ResultSet result = statement.getResultSet();
-            while (result.next()) {
+            while (!result.isAfterLast()) {
                 availableSoilTypes.add(SoilTypesDAO.getSoilType(result));
             }
         } catch (Exception e) {
@@ -214,7 +214,7 @@ public class PlantsDAO {
             Statement statement = DatabaseConnection.getConnection().createStatement();
             statement.executeQuery(query.toString());
             ResultSet result = statement.getResultSet();
-            while (result.next()) {
+            while (!result.isAfterLast()) {
                 availableClimateTypes.add(ClimateTypesDAO.getClimateType(result));
             }
         } catch (Exception e) {
@@ -226,8 +226,9 @@ public class PlantsDAO {
     protected static boolean checkPlantNameIsUnique(PlantsEntity plant) {
         // check that plant name is unique
         EntityManager entityManager = DatabaseConnection.getEntityManager();
-        List<PlantsEntity> plants = entityManager.createQuery("SELECT p FROM PlantsEntity p WHERE p.plantName = :plantName", PlantsEntity.class)
+        List<PlantsEntity> plants = entityManager.createQuery("SELECT p FROM PlantsEntity p WHERE p.plantName = :plantName AND p.idPlant != :idPlant", PlantsEntity.class)
                 .setParameter("plantName", plant.getPlantName())
+                .setParameter("idPlant", plant.getIdPlant())
                 .getResultList();
         return plants.isEmpty();
     }

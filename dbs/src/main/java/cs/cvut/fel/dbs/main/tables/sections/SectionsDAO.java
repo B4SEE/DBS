@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SectionsDAO {
+    public static int page = 1;
+    public static int recordsPerPage = 15;
     private static final Logger logger = LogManager.getLogger(SectionsDAO.class);
     protected static SectionsFormController sectionsFormController = new SectionsFormController();
     protected static SoiltypesEntity selectedSoilType = null;
@@ -28,7 +30,7 @@ public class SectionsDAO {
         ResultSet result = null;
         try {
             statement = DatabaseConnection.getConnection().createStatement();
-            result = statement.executeQuery("SELECT * FROM sections");
+            result = statement.executeQuery("SELECT * FROM sections LIMIT " + recordsPerPage + " OFFSET " + (page - 1) * recordsPerPage);
             while (result.next()) {
                 logger.info("Getting section: " + result.getInt("id_section"));
                 SectionsEntity section = new SectionsEntity();
@@ -247,6 +249,7 @@ public class SectionsDAO {
                 .getResultList();
         if (!instances.isEmpty()) {
             logger.error("Cannot delete section with instances in it");
+            CRUD.showErrorMessage("Cannot delete section with instances in it.");
             return;
         }
         entityManager.getTransaction().begin();
@@ -281,5 +284,11 @@ public class SectionsDAO {
         sectionsFormController.clearForm();
         sectionsFormController.resetFields();
         CRUD.errorMessage.setVisible(false);
+    }
+    public static List<InstancesEntity> getSectionInstances(SectionsEntity section) {
+        EntityManager entityManager = DatabaseConnection.getEntityManager();
+        return entityManager.createQuery("SELECT i FROM InstancesEntity i WHERE i.section = :section", InstancesEntity.class)
+                .setParameter("section", section)
+                .getResultList();
     }
 }
