@@ -8,7 +8,8 @@
 
 ## 🔎 About
 
-...add about...
+JPA application base for the semester project for the Database Systems course. 
+The project is based on the requirements of the course and is designed to demonstrate the knowledge of the students in the field of database systems.
 
 &nbsp;
 
@@ -152,6 +153,42 @@ As part of this submission, demonstrate:
 - :construction: DAO layer providing the necessary low-level access to the data including parameterized query
   
 - :construction: A service layer calling the DAO layer containing 5 selected uses of your data, specialized mainly for write operations and covering the transaction from CP-4.
+
+</details>
+
+&nbsp;
+
+## 📦 Installation
+
+<details><summary>Click to expand</summary>
+&nbsp;
+
+❗ **Please always pull the latest changes before running the project.** ❗
+
+There is no .jar file available for this project yet. You can clone the repository and run the project locally.
+
+Steps to clone the repository:
+
+1. Open the terminal and navigate to the directory where you want to clone the repository.
+
+2. Run the following commands:
+   ```bash
+    git clone https://github.com/B4SEE/DBS.git
+    ```
+
+3. Create `user_credentials/` directory in the `dbs/` directory and add the `credentials.txt` file with the following content:
+   ```
+    hostname
+    username
+    password
+    ```
+    Replace `hostname`, `username`, and `password` with your database credentials.
+
+4. Open the project in your IDE and navigate to the `dbs/src/main/java/cs/cvut/fel/dbs/Main.java` file.
+
+5. Click on Run > Edit Configurations and set environment variables for the database connection.
+
+6. Run the project.
 
 </details>
 
