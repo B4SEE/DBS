@@ -1,0 +1,55 @@
+/* Form style */
+
+.root {
+    -fx-background-color: #888888;
+}
+
+.VBox {
+    -fx-alignment: center;
+}
+
+.main-menu-bg {
+    -fx-background-color: black;
+    -fx-background-image: url('../images/background.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
+
+.TextField {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+    -fx-pref-width: 100;
+}
+
+.label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.button, .MenuBar Menu, .MenuBar Menu MenuItem {
+    -fx-background-color: #0073e6;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+}
+
+.button:hover, .MenuBar Menu:hover, .MenuBar Menu MenuItem:hover {
+    -fx-background-color: #005bb5;
+}
+
+.split-pane {
+    -fx-padding: 10;
+}
+
+.scroll-pane {
+    -fx-padding: 10;
+}
+
+.grid-pane {
+    -fx-padding: 10;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
