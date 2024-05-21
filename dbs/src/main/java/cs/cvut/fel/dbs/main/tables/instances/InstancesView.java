@@ -42,7 +42,6 @@ public class InstancesView {
             });
             recordsController.deleteButton.setOnAction(event -> {
                 InstancesDAO.deleteInstance(instance);
-                showInstancesRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
         }

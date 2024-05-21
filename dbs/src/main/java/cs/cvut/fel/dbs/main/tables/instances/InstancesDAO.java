@@ -138,7 +138,10 @@ public class InstancesDAO {
 
         entityManager.remove(instanceInDb);
         entityManager.getTransaction().commit();
-        logger.info("Plant deleted successfully.");
+
+        InstancesView.showInstancesRecordsList();
+        clearAll();
+        logger.info("Instance deleted: " + instanceInDb.getInstanceName());
     }
     protected static void clearAll() {
         selectedPlant = null;

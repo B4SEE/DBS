@@ -79,8 +79,10 @@ public class ClimateTypesDAO {
             ClimatetypesEntity climateTypeInDb = entityManager.find(ClimatetypesEntity.class, climateType.getIdClimateType());
             entityManager.remove(climateTypeInDb);
             entityManager.getTransaction().commit();
-            logger.info("Plant deleted successfully.");
+
             ClimateTypesView.showClimateTypesRecordsList();
+            clearAll();
+            logger.info("Climate type deleted successfully.");
         } catch (Exception e) {
             logger.error("Error while deleting address: " + e.getMessage());
             ClimateTypesView.showClimateTypesRecordsList();

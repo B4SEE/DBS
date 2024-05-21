@@ -41,7 +41,6 @@ public class ResearchesView {
             });
             recordsController.deleteButton.setOnAction(event -> {
                 ResearchesDAO.deleteResearch(research);
-                showResearchesRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
         }

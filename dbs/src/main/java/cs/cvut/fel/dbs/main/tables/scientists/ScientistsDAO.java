@@ -142,7 +142,6 @@ public class ScientistsDAO {
         }
     }
     protected static void deleteScientist(ScientistsEntity scientist) {
-        //check if researches are not assigned to this scientist
         EntityManager entityManager = DatabaseConnection.getEntityManager();
         List<ResearchesEntity> researches = entityManager.createQuery("SELECT r FROM ResearchesEntity r WHERE r.scientistId = :scientistId", ResearchesEntity.class)
                 .setParameter("scientistId", scientist)
@@ -156,6 +155,10 @@ public class ScientistsDAO {
         entityManager.getTransaction().begin();
         entityManager.remove(scientist);
         entityManager.getTransaction().commit();
+
+        ScientistsView.showScientistsRecordsList();
+        clearAll();
+        logger.info("Scientist deleted: " + scientist.getPersonId().getFirstName() + " " + scientist.getPersonId().getLastName());
     }
 
     public static void clearAll() {

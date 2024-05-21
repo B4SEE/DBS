@@ -125,12 +125,15 @@ public class ResearchesDAO {
             entityManager.getTransaction().commit();
             ResearchesView.showResearchesRecordsList();
             ResearchesView.showResearchInfo(null);
+
+            ResearchesView.showResearchesRecordsList();
+            clearAll();
+            logger.info("Research deleted successfully");
         } catch (Exception e) {
             logger.error("Failed: " + e.getMessage());
             ResearchesView.showResearchesRecordsList();
             CRUD.showErrorMessage("Failed: " + e.getMessage());
         }
-        clearAll();
     }
 
     public static List<ScientistsEntity> getListOfAvailableScientists(ResearchesEntity research) {

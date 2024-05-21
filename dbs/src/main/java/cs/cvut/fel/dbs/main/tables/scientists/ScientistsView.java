@@ -42,7 +42,6 @@ public class ScientistsView {
             });
             recordsController.deleteButton.setOnAction(event -> {
                 ScientistsDAO.deleteScientist(scientist);
-                showScientistsRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
         }

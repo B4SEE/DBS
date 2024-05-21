@@ -41,7 +41,6 @@ public class EmployeesView {
             });
             recordsController.deleteButton.setOnAction(event -> {
                 EmployeesDAO.deleteEmployee(employee);
-                showEmployeesRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
         }

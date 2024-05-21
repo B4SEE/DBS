@@ -255,7 +255,10 @@ public class SectionsDAO {
         entityManager.getTransaction().begin();
         entityManager.remove(section);
         entityManager.getTransaction().commit();
-        logger.info("Section deleted successfully.");
+
+        SectionsView.showSectionsRecordsList();
+        clearAll();
+        logger.info("Section: " + section.getSectionName() + " deleted successfully.");
     }
     protected static boolean checkSectionNameAndCoordinatesAreUnique(SectionsEntity section) {
         logger.info("Checking if section name and geographical coordinates are unique");

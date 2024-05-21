@@ -125,6 +125,10 @@ public class EmployeesDAO {
             EmployeesEntity managedEmployee = entityManager.merge(employee);
             entityManager.remove(managedEmployee);
             entityManager.getTransaction().commit();
+
+            EmployeesView.showEmployeesRecordsList();
+            clearAll();
+            logger.info("Employee deleted: " + employee.getEmployeeNumber() + " " + employee.getPerson().getFirstName() + " " + employee.getPerson().getLastName());
         } catch (Exception e) {
             logger.error("Error while deleting employee: " + e.getMessage());
         }

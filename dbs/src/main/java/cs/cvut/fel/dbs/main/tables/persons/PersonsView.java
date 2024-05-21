@@ -43,7 +43,6 @@ public class PersonsView {
             });
             recordsController.deleteButton.setOnAction(event -> {
                 PersonsDAO.deletePerson(person);
-                showPersonsRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
         }

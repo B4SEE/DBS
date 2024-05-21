@@ -115,7 +115,6 @@ public class PersonsDAO {
     }
 
     public static void deletePerson(PersonsEntity person) {
-        //check if person does not have children (employees, scientists)
         EntityManager entityManager = DatabaseConnection.getEntityManager();
         List<PersonsEntity> employees = entityManager.createQuery("SELECT e.person FROM EmployeesEntity e WHERE e.person = :person", PersonsEntity.class)
                 .setParameter("person", person)
@@ -130,7 +129,10 @@ public class PersonsDAO {
         entityManager.getTransaction().begin();
         entityManager.remove(person);
         entityManager.getTransaction().commit();
+
+        PersonsView.showPersonsRecordsList();
         clearAll();
+        logger.info("Person deleted: " + person.getFirstName() + " " + person.getLastName());
     }
 
     public static List<AddressesEntity> getListOfAvailableAddresses(PersonsEntity person) {

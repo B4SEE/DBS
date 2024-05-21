@@ -79,7 +79,10 @@ public class SoilTypesDAO {
             SoiltypesEntity soilTypeToDelete = entityManager.find(SoiltypesEntity.class, soilType.getIdSoilType());
             entityManager.remove(soilTypeToDelete);
             entityManager.getTransaction().commit();
+
             SoilTypesView.showSoilTypesRecordsList();
+            clearAll();
+            logger.info("Soil type deleted successfully");
         } catch (Exception e) {
             SoilTypesView.showSoilTypesRecordsList();
         } finally {

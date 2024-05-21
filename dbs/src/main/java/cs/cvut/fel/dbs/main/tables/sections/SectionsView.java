@@ -43,7 +43,6 @@ public class SectionsView {
             });
             recordsController.deleteButton.setOnAction(event -> {
                 SectionsDAO.deleteSection(section);
-                showSectionsRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
         }

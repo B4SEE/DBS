@@ -104,8 +104,10 @@ public class AddressesDAO {
             AddressesEntity addressInDb = entityManager.find(AddressesEntity.class, address.getIdAddress());
             entityManager.remove(addressInDb);
             entityManager.getTransaction().commit();
-            logger.info("Plant deleted successfully.");
+
             AddressesView.showAddressesRecordsList();
+            clearAll();
+            logger.info("Address: " + address.getCity() + " " + address.getStreet() + " " + address.getHouseNumber() + " deleted.");
         } catch (Exception e) {
             logger.error("Error while deleting address: " + e.getMessage());
         } finally {

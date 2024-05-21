@@ -109,6 +109,7 @@ public class PlantsDAO {
         entityManager.remove(plantInDb);
         entityManager.getTransaction().commit();
         PlantsView.showPlantsRecordsList();
+        clearAll();
         logger.info("Plant deleted successfully.");
     }
     protected static void deletePreferredSoilType(PlantsEntity plant, SoiltypesEntity soilType) {
