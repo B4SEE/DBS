@@ -186,9 +186,12 @@ Steps to clone the repository:
 
 4. Open the project in your IDE and navigate to the `dbs/src/main/java/cs/cvut/fel/dbs/Main.java` file.
 
-5. Click on Run > Edit Configurations and set environment variables for the database connection.
+5. Click on Run > Edit Configurations and set environment variables for the database connection:
+   ```
+   db_host_url=hostname;db_password=password;db_username=username
+   ```
 
-6. Run the project.
+7. Run the project.
 
 </details>
 
