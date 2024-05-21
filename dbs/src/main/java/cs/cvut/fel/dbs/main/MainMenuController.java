@@ -11,9 +11,10 @@ public class MainMenuController {
         // Load fxml file
         logger.info("Initializing main menu...");
         Pane grid = GUI.loadFXML("layouts/mainMenu.fxml");
-        return new Scene(grid, 800, 600);
-    }
-    public void exit() {
-        GUI.getStage().close();
+
+        Scene scene = new Scene(grid);
+        GUI.getStage().setMaximized(true);
+        GUI.getStage().setResizable(false);
+        return scene;
     }
 }

@@ -23,22 +23,28 @@ public class CRUD {
     public static Button previousPageButton;
 
     public static void showCRUDScene() {
-        // Load fxml file
         logger.info("Initializing CRUD scene...");
-
         VBox grid = (VBox) GUI.loadFXML("layouts/crud.fxml");
-        GUI.getStage().setScene(new Scene(grid, 800, 600));
+
+        // Set false to allow resizing
+        GUI.getStage().setMaximized(false);
+        GUI.getStage().setScene(new Scene(grid));
+        GUI.getStage().setMaximized(true);
+        GUI.getStage().show();
+
         recordsGrid = (GridPane) grid.lookup("#recordsGrid");
         recordsGridTitle = (Label) grid.lookup("#recordsGridTitle");
         recordsFormGrid = (GridPane) grid.lookup("#recordsFormGrid");
-        errorMessage = (Label) grid.lookup("#errorMessage");
         noRecordsSelectedLabel = (Label) grid.lookup("#noRecordsSelectedLabel");
-        errorMessage.setVisible(false);
-        errorMessage.setStyle("-fx-text-fill: red");
+
+        errorMessage = (Label) grid.lookup("#errorMessage");
+
         addButton = (Button) grid.lookup("#addButton");
         cancelButton = (Button) grid.lookup("#cancelButton");
         nextPageButton = (Button) grid.lookup("#nextPageButton");
         previousPageButton = (Button) grid.lookup("#previousPageButton");
+
+        errorMessage.setVisible(false);
         nextPageButton.setVisible(false);
         previousPageButton.setVisible(false);
         cancelButton.setVisible(false);
@@ -50,7 +56,6 @@ public class CRUD {
                 .max(Integer::compare)
                 .orElse(-1) + 1;
 
-        logger.info("Number of rows: " + numRows);
         GridPane.setRowIndex(errorMessage, numRows + 1);
         GridPane.setRowIndex(addButton, numRows + 2);
         GridPane.setRowIndex(cancelButton, numRows + 3);
