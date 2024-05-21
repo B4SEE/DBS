@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import java.util.Objects;
 
 public class SoilTypesView {
@@ -61,7 +60,7 @@ public class SoilTypesView {
         SoilTypesDAO.soilTypesFormController.getSoilTypeNameField().setEditable(false);
         SoilTypesDAO.soilTypesFormController.getSoilTypeDescriptionField().setEditable(false);
 
-        Label formTitle = new Label("Address Info");
+        Label formTitle = new Label("Soil Type Info");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         setFormFields(CRUD.recordsFormGrid, SoilTypesDAO.soilTypesFormController, 1);
     }
@@ -70,7 +69,7 @@ public class SoilTypesView {
 
         SoilTypesDAO.soilTypesFormController.fillFormFields(soilType);
 
-        Label formTitle = new Label("Edit Instance");
+        Label formTitle = new Label("Edit Soil Type");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, SoilTypesDAO.soilTypesFormController, 1);
 
@@ -83,12 +82,12 @@ public class SoilTypesView {
     public static void showEmptyForm() {
         CRUD.recordsFormGrid.getChildren().clear();
 
-        Label formTitle = new Label("Add Plant");
+        Label formTitle = new Label("Add Soil Type");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
 
         int count = setFormFields(CRUD.recordsFormGrid, SoilTypesDAO.soilTypesFormController, 1);
 
-        Button addButton = new Button("Add");
+        Button addButton = new Button("Add Soil Type");
         addButton.setOnAction(event -> SoilTypesController.addNewSoilType());
 
         Button cancelButton = getCancelButton();

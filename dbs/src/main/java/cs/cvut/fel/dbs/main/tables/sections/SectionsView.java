@@ -85,7 +85,7 @@ public class SectionsView {
 
         SectionsDAO.sectionsFormController.fillFormFields(section);
 
-        Label formTitle = new Label("Edit Instance");
+        Label formTitle = new Label("Edit Section");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, SectionsDAO.sectionsFormController, 1);
 
@@ -384,7 +384,7 @@ public class SectionsView {
         CRUD.cancelButton.setVisible(true);
         CRUD.addButton.setText("Save selected");
         CRUD.addButton.setOnAction(event -> {
-            logger.info("Saving selected soil/climate types...");
+            logger.info("Saving selected soil/climate/manager...");
             showSectionsRecordsList();
             if (isEdit) {
                 showSectionEditForm(section);

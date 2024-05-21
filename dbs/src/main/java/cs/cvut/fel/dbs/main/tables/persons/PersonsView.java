@@ -83,7 +83,7 @@ public class PersonsView {
 
         PersonsDAO.personsFormController.fillFormFields(person);
 
-        Label formTitle = new Label("Edit Instance");
+        Label formTitle = new Label("Edit Person");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, PersonsDAO.personsFormController, 1);
 

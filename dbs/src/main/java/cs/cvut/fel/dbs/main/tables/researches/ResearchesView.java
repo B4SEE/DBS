@@ -59,7 +59,7 @@ public class ResearchesView {
 
         ResearchesDAO.researchesFormController.getResearchNameField().setEditable(false);
 
-        Label formTitle = new Label("Instance Info");
+        Label formTitle = new Label("Research Info");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, ResearchesDAO.researchesFormController, 1);
 
@@ -72,7 +72,7 @@ public class ResearchesView {
 
         ResearchesDAO.researchesFormController.fillFormFields(research);
 
-        Label formTitle = new Label("Edit Instance");
+        Label formTitle = new Label("Edit Research");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, ResearchesDAO.researchesFormController, 1);
 
@@ -96,7 +96,7 @@ public class ResearchesView {
     public static void showEmptyForm() {
         CRUD.recordsFormGrid.getChildren().clear();
 
-        Label formTitle = new Label("Add Plant");
+        Label formTitle = new Label("Add Research");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
 
         int count = setFormFields(CRUD.recordsFormGrid, ResearchesDAO.researchesFormController, 1);
@@ -197,7 +197,7 @@ public class ResearchesView {
         CRUD.cancelButton.setVisible(true);
         CRUD.addButton.setText("Save selected");
         CRUD.addButton.setOnAction(event -> {
-            logger.info("Saving selected soil/climate types...");
+            logger.info("Saving selected scientist...");
             showResearchesRecordsList();
             if (isEdit) {
                 showResearchEditForm(research);

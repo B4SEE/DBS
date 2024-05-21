@@ -45,7 +45,6 @@ public class InstancesView {
                 showInstancesRecordsList();
             });
             CRUD.recordsGrid.getChildren().add(recordGrid);
-            logger.info("Plant record added: " + instance.getInstanceName() + "at row " + count);
         }
         CRUD.addErrorMessageAndAddButton();
         CRUD.addButton.setOnAction(event -> {
@@ -118,7 +117,7 @@ public class InstancesView {
     public static void showEmptyForm() {
         CRUD.recordsFormGrid.getChildren().clear();
 
-        Label formTitle = new Label("Add Plant");
+        Label formTitle = new Label("Add Instance");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
 
         int count = setFormFields(CRUD.recordsFormGrid, InstancesDAO.instancesFormController, 1);

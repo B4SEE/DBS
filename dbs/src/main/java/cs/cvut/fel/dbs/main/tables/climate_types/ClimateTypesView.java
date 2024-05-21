@@ -60,7 +60,7 @@ public class ClimateTypesView {
         ClimateTypesDAO.climateTypesFormController.getClimateTypeNameField().setEditable(false);
         ClimateTypesDAO.climateTypesFormController.getClimateTypeDescriptionField().setEditable(false);
 
-        Label formTitle = new Label("Address Info");
+        Label formTitle = new Label("Climate Type Info");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         setFormFields(CRUD.recordsFormGrid, ClimateTypesDAO.climateTypesFormController, 1);
     }
@@ -69,7 +69,7 @@ public class ClimateTypesView {
 
         ClimateTypesDAO.climateTypesFormController.fillFormFields(climateType);
 
-        Label formTitle = new Label("Edit Instance");
+        Label formTitle = new Label("Edit Climate Type");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, ClimateTypesDAO.climateTypesFormController, 1);
 
@@ -82,12 +82,12 @@ public class ClimateTypesView {
     public static void showEmptyForm() {
         CRUD.recordsFormGrid.getChildren().clear();
 
-        Label formTitle = new Label("Add Plant");
+        Label formTitle = new Label("Add Climate Type");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
 
         int count = setFormFields(CRUD.recordsFormGrid, ClimateTypesDAO.climateTypesFormController, 1);
 
-        Button addButton = new Button("Add");
+        Button addButton = new Button("Add Climate Type");
         addButton.setOnAction(event -> ClimateTypesController.addNewClimateType());
 
         Button cancelButton = getCancelButton();

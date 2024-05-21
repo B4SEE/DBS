@@ -82,7 +82,7 @@ public class AddressesView {
 
         AddressesDAO.addressesFormController.fillFormFields(address);
 
-        Label formTitle = new Label("Edit Instance");
+        Label formTitle = new Label("Edit Address");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, AddressesDAO.addressesFormController, 1);
 
@@ -95,12 +95,12 @@ public class AddressesView {
     public static void showEmptyForm() {
         CRUD.recordsFormGrid.getChildren().clear();
 
-        Label formTitle = new Label("Add Plant");
+        Label formTitle = new Label("Add Address");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
 
         int count = setFormFields(CRUD.recordsFormGrid, AddressesDAO.addressesFormController, 1);
 
-        Button addButton = new Button("Add");
+        Button addButton = new Button("Add Address");
         addButton.setOnAction(event -> AddressesController.addNewAddress());
 
         Button cancelButton = getCancelButton();

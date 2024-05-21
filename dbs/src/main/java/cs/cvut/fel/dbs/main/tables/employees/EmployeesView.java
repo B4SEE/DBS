@@ -59,7 +59,7 @@ public class EmployeesView {
 
         EmployeesDAO.employeesFormController.getEmployeeIdField().setEditable(false);
 
-        Label formTitle = new Label("Scientist Info");
+        Label formTitle = new Label("Employee Info");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, EmployeesDAO.employeesFormController, 1);
 
@@ -89,7 +89,7 @@ public class EmployeesView {
 
         EmployeesDAO.employeesFormController.fillFormFields(employee);
 
-        Label formTitle = new Label("Edit Instance");
+        Label formTitle = new Label("Edit Employee");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
         int count = setFormFields(CRUD.recordsFormGrid, EmployeesDAO.employeesFormController, 1);
 
@@ -133,7 +133,7 @@ public class EmployeesView {
     public static void showEmptyForm() {
         CRUD.recordsFormGrid.getChildren().clear();
 
-        Label formTitle = new Label("Add Plant");
+        Label formTitle = new Label("Add Employee");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
 
         int count = setFormFields(CRUD.recordsFormGrid, EmployeesDAO.employeesFormController, 1);
@@ -214,7 +214,7 @@ public class EmployeesView {
                     recordsController.infoButton.setText("Select");
                 } else {
                     if (EmployeesDAO.selectedPerson != null) {
-                        CRUD.showWarningMessage("You can select only one plant type.");
+                        CRUD.showWarningMessage("You can select only one person.");
                         return;
                     }
                     CRUD.clearMessage();
@@ -299,7 +299,7 @@ public class EmployeesView {
         CRUD.cancelButton.setVisible(true);
         CRUD.addButton.setText("Save selected");
         CRUD.addButton.setOnAction(event -> {
-            logger.info("Saving selected soil/climate types...");
+            logger.info("Saving selected person/section/supervisor...");
             showEmployeesRecordsList();
             if (isEdit) {
                 showEmployeeEditForm(employee);

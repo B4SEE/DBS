@@ -136,7 +136,7 @@ public class ScientistsView {
     public static void showEmptyForm() {
         CRUD.recordsFormGrid.getChildren().clear();
 
-        Label formTitle = new Label("Add Plant");
+        Label formTitle = new Label("Add Scientist");
         CRUD.recordsFormGrid.add(formTitle, 0, 0);
 
         int count = setFormFields(CRUD.recordsFormGrid, ScientistsDAO.scientistsFormController, 1);
@@ -165,7 +165,7 @@ public class ScientistsView {
         changeSectionButton.setOnAction(event -> showAvailableSections(null, false, ScientistsDAO.getListOfAvailableSections(null)));
         CRUD.recordsFormGrid.add(changeSectionButton, 1, count++);
 
-        Button addButton = new Button("Add");
+        Button addButton = new Button("Add Scientist");
         addButton.setOnAction(event -> ScientistsController.addNewScientist());
 
         Button cancelButton = getCancelButton();
@@ -219,7 +219,7 @@ public class ScientistsView {
                     recordsController.infoButton.setText("Select");
                 } else {
                     if (ScientistsDAO.selectedPerson != null) {
-                        CRUD.showWarningMessage("You can select only one plant type.");
+                        CRUD.showWarningMessage("You can select only one person.");
                         return;
                     }
                     CRUD.clearMessage();
