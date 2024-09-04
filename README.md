@@ -1,6 +1,6 @@
 # Semester project for DBS (Database systems) summer course 2023/2024
 
-## Status: In development :construction:
+## Status: Finished ✔️
 
 ---
 
